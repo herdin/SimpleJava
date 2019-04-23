@@ -1,0 +1,6 @@
+**/*.properties
+.settings/
+target/
+.classpath
+.project
+build.xml
