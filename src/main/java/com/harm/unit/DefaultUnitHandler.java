@@ -39,6 +39,7 @@ public class DefaultUnitHandler implements InvocationHandler {
 			this.beforeExcute();
 			return method.invoke(this.unit, args);
 		} catch (Exception e) {
+			this.handleException(e);
 			throw e;
 		} finally {
 			this.afterExcute();
@@ -50,6 +51,12 @@ public class DefaultUnitHandler implements InvocationHandler {
 		DefaultUnitHandler.logger.debug("----------------------------------------");
 		DefaultUnitHandler.logger.debug("START TIME : {}", sdf.format(new Date()));
 		DefaultUnitHandler.logger.debug("{} STARTED", this.unit.getClass().getSimpleName());
+		DefaultUnitHandler.logger.debug("........................................");
+	}//END OF FUNCTION
+	
+	private void handleException(Exception e) {
+		DefaultUnitHandler.logger.debug("........................................");
+		DefaultUnitHandler.logger.debug("EXCEPTION HANDLE : {}", e.getMessage());
 		DefaultUnitHandler.logger.debug("........................................");
 	}//END OF FUNCTION
 	

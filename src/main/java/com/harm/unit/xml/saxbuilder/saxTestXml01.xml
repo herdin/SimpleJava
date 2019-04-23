@@ -1,0 +1,15 @@
+<rootbitch>
+	<firstchild hey="what">
+		<items>
+			<item1/>
+			<item2/>
+		</items>
+	</firstchild>
+	<secondchild hey="yes?">
+		<items>
+			<item3/>
+			<item4/>
+			<item5/>
+		</items>
+	</secondchild>
+</rootbitch>
