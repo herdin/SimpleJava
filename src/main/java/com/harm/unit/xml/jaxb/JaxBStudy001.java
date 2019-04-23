@@ -30,8 +30,8 @@ public class JaxBStudy001 implements Unit {
 	
 	@Override
 	public void excute(Object[] obj) throws Exception {
-		String testDataFullPathStr = new File(this.getClass().getResource("jaxbTestXml.xml").getPath()).getCanonicalPath();
-		String schemaFullPathStr = this.getClass().getResource("schema/jaxbStudy.xsd").getPath();
+		String testDataFullPathStr = new File(this.getClass().getResource("jaxbTestXml02.xml").getPath()).getCanonicalPath();
+		String schemaFullPathStr = this.getClass().getResource("schema/TestSchema.xsd").getPath();
 		String xmlString = FileUtils.getTextFromFile(testDataFullPathStr);
 		
 		Message message = (Message) this.convertXmlToJaxb(Message.class, xmlString, schemaFullPathStr);
@@ -62,9 +62,9 @@ public class JaxBStudy001 implements Unit {
 				throw new JAXBException("why null?");
 			}
 		} catch (JAXBException e) {
-			logger.error(e.getMessage(), e);
+			this.logger.error(e.getMessage(), e);
 		} catch (SAXException e) {
-			logger.error(e.getMessage(), e);
+			this.logger.error(e.getMessage(), e);
 		}
 		
 		return jaxbObj;
@@ -77,10 +77,10 @@ public class JaxBStudy001 implements Unit {
 		try {
 			
 			Marshaller marshaller = JAXBContext.newInstance(clazz).createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_ENCODING, StandardCharsets.UTF_8.toString());
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
-//            marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, schemaFullPath);
+			marshaller.setProperty(Marshaller.JAXB_ENCODING, StandardCharsets.UTF_8.toString());
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
+//			marshaller.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION, schemaFullPath);
 			marshaller.setSchema(SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI).newSchema(new File(schemaFullPath)));
 			marshaller.setEventHandler(new JAXBValidator());
 			
@@ -90,20 +90,20 @@ public class JaxBStudy001 implements Unit {
 			xmlString = stringWriter.toString();
 			
 		} catch (JAXBException e) {
-			logger.error(e.getMessage(), e);
+			this.logger.error(e.getMessage(), e);
 		} catch (SAXException e) {
-			logger.error(e.getMessage(), e);
+			this.logger.error(e.getMessage(), e);
 		} finally {
 			try {
 				stringWriter.close();
 			} catch (IOException e) {
-				logger.error(e.getMessage(), e);
+				this.logger.error(e.getMessage(), e);
 			}
 		}
 		
 		return xmlString;
 	}//END OF convertJaxbToXml()
-	
+
 	class JAXBValidator extends ValidationEventCollector {
 		private Logger logger = LoggerFactory.getLogger(JAXBValidator.class);
 		
@@ -125,12 +125,12 @@ public class JaxBStudy001 implements Unit {
 			}
 			return false;
 		}
+		
 		private void printInfo(ValidationEvent event) {
 			ValidationEventLocator locator = event.getLocator();
-			
-			logger.debug("" + locator.getLineNumber());
-			logger.debug("" + locator.getColumnNumber());
-			logger.debug("" + event.getMessage());
+			this.logger.debug("" + locator.getLineNumber());
+			this.logger.debug("" + locator.getColumnNumber());
+			this.logger.debug("" + event.getMessage());
 		}
 	}
 }//END OF CLASS

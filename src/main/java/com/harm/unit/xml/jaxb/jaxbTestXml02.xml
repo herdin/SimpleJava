@@ -1,0 +1,9 @@
+<message>
+	<someExtra1></someExtra1>
+	<someExtra2></someExtra2>
+	<messageId>MESSAGE_ID_DATA</messageId>
+	<gateId>GATE_ID_DATA</gateId>
+	<cardId>CARD_ID_DATA</cardId>
+	<someExtra3></someExtra3>
+	<someExtra4></someExtra4>
+</message>

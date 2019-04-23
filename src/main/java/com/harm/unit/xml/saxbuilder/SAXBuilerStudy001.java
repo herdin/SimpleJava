@@ -16,7 +16,7 @@ public class SAXBuilerStudy001 implements Unit {
 	@Override
 	public void excute(Object[] obj) throws Exception {
 		SAXBuilder saxBuilder = new SAXBuilder();
-		Document document = saxBuilder.build(this.getClass().getResource("saxTestXml01.xml").getPath());
+		Document document = saxBuilder.build(this.getClass().getResource("saxTestXml02.xml").getPath());
 		Element rootElement = document.getRootElement();
 		logger.debug(rootElement.getName());
 		List<Element> elements = rootElement.getChildren();
