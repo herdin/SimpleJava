@@ -1,10 +1,8 @@
-package com.harm.unit.rss;
+package com.harm.unit.rss.schema;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
-public class ItemShemaObject {
+public class Item {
 	private String author;
 	private String category;
 	private String title;

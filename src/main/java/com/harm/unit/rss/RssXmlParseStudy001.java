@@ -20,6 +20,8 @@ import org.slf4j.LoggerFactory;
 
 import com.harm.unit.Unit;
 import com.harm.unit.io.HttpUrlConnectionStudy01;
+import com.harm.unit.rss.schema.Item;
+import com.harm.unit.rss.schema.Rss;
 
 public class RssXmlParseStudy001 implements Unit {
 	private final Logger logger =  LoggerFactory.getLogger(RssXmlParseStudy001.class);
@@ -51,12 +53,12 @@ public class RssXmlParseStudy001 implements Unit {
 //				rssData = rssData.substring(0, rssData.lastIndexOf(">")+1);
 				logger.debug("RSS DATA : {}", rssData);
 				
-				JAXBContext context = JAXBContext.newInstance(RssShemaObject.class);
+				JAXBContext context = JAXBContext.newInstance(Rss.class);
 				Unmarshaller unmarshaller = context.createUnmarshaller();
-				RssShemaObject rssShemaObject = (RssShemaObject) unmarshaller.unmarshal(new StringReader(rssData));
+				Rss rssShemaObject = (Rss) unmarshaller.unmarshal(new StringReader(rssData));
 				logger.debug("PARSED RSS DATA LENGTH : {}", rssShemaObject.getChannel().getItems().size());
-				for(ItemShemaObject item : rssShemaObject.getChannel().getItems()) {
-					logger.debug(item.getTitle());
+				for(Item item : rssShemaObject.getChannel().getItems()) {
+					logger.debug(item.getPubDate());
 				}
 //				SAXBuilder saxBuilder = new SAXBuilder();
 //				Document document = saxBuilder.build(new StringReader(rssData));
