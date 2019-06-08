@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 public class DefaultUnitHandler implements InvocationHandler {
 	public static Logger logger = LoggerFactory.getLogger(DefaultUnitHandler.class);
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-	private final String div = "##############################################";
 	private long startTimeLong = -1L;
 	private Unit unit = null;
 	
@@ -21,10 +20,10 @@ public class DefaultUnitHandler implements InvocationHandler {
 	}
 
 	public static void start(DefaultUnitHandler duh) {
-		DefaultUnitHandler.start(null, duh);
+		DefaultUnitHandler.start(duh, null);
 	}//END OF FUNCTION
 	
-	public static void start(Object[] objects, DefaultUnitHandler duh) {
+	public static void start(DefaultUnitHandler duh, Object[] objects) {
 		Unit proxyUnit = (Unit)Proxy.newProxyInstance(duh.getClass().getClassLoader(), new Class[] {Unit.class}, duh);
 		try {
 			proxyUnit.excute(objects);

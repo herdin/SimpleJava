@@ -15,7 +15,7 @@ public class CacheStudy001 implements Unit {
 	
 	@Override
 	public void excute(Object[] objects) throws Exception {
-		CacheRepository cr = new CacheRepository(100);
+		final CacheRepository cr = new CacheRepository(100);
 		
 		LoadingCache<String, CacheTargetObject> lc = CacheBuilder.newBuilder()
 			.maximumSize(3)
