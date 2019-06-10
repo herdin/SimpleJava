@@ -1,8 +1,6 @@
 package com.harm.unit.rss;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
@@ -12,14 +10,10 @@ import java.nio.charset.Charset;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.input.SAXBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.harm.unit.Unit;
-import com.harm.unit.io.HttpUrlConnectionStudy01;
 import com.harm.unit.rss.schema.Item;
 import com.harm.unit.rss.schema.Rss;
 
