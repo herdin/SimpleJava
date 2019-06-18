@@ -35,7 +35,7 @@ public class SimpleJavaxSMTPStudy001 implements Unit {
 		Session session = Session.getDefaultInstance(prop, new Authenticator() {
 		    protected PasswordAuthentication getPasswordAuthentication() {
 		         String username = "herdin86@gmail.com"; // gmail 사용자;
-		         String password = "passwod  // 패스워드 일부러 틀림 에러나라고 젠장
+		         String password = "passwod  // 패스워드 일부러 틀림 에러나라고 젠장 왜 안되는거야
 		         return new PasswordAuthentication(username, password);
 		    }
 	    });
