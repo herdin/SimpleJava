@@ -1,6 +1,8 @@
 **/*.properties
 .settings/
 target/
+bin/
+.vscode/
 .classpath
 .project
 build.xml

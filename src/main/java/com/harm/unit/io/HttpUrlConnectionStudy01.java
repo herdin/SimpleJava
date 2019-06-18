@@ -9,7 +9,6 @@ import java.nio.charset.Charset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.net.HttpHeaders;
 import com.harm.unit.Unit;
 
 public class HttpUrlConnectionStudy01 implements Unit {

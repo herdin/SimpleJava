@@ -2,7 +2,6 @@ package com.harm.unit.proxy;
 
 import java.lang.reflect.Proxy;
 
-import com.harm.unit.DefaultUnitHandler;
 import com.harm.unit.Unit;
 
 public class ProxyStudy001 implements Unit {

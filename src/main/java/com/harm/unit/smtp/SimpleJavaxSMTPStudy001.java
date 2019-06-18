@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.harm.unit.Unit;
 
 /**
- * Âü°í
+ * ï¿½ï¿½ï¿½ï¿½
  * https://ktko.tistory.com/entry/JAVA-SMTP%EC%99%80-Mail-%EB%B0%9C%EC%86%A1%ED%95%98%EA%B8%B0Google-Naver
  */
 public class SimpleJavaxSMTPStudy001 implements Unit {
@@ -34,8 +34,8 @@ public class SimpleJavaxSMTPStudy001 implements Unit {
 
 		Session session = Session.getDefaultInstance(prop, new Authenticator() {
 		    protected PasswordAuthentication getPasswordAuthentication() {
-		         String username = "herdin86@gmail.com"; // gmail »ç¿ëÀÚ;
-		         String password = "passwod  // ÆÐ½º¿öµå ÀÏºÎ·¯ Æ²¸² ¿¡·¯³ª¶ó°í Á¨Àå ¿Ö ¾ÈµÇ´Â°Å¾ß
+		         String username = "herdin86@gmail.com"; // gmail ï¿½ï¿½ï¿½ï¿½ï¿½;
+		         String password = "passwod  // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÏºÎ·ï¿½ Æ²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ÈµÇ´Â°Å¾ï¿½";
 		         return new PasswordAuthentication(username, password);
 		    }
 	    });
@@ -44,7 +44,7 @@ public class SimpleJavaxSMTPStudy001 implements Unit {
 		message.setFrom(new InternetAddress("herdin86@gmail.com"));
 		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("herdin86@gmail.com"));
 		message.setSubject("mail subject");
-		message.setContent("¸ÞÀÏÀÇ ³»¿ë", "text/plain");
+		message.setContent("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", "text/plain");
 		message.setSentDate(new Date());
 		Transport.send(message);
 	}// END OF FUNCTION
