@@ -1,8 +1,8 @@
 //
-// ÀÌ ÆÄÀÏÀº JAXB(JavaTM Architecture for XML Binding) ÂüÁ¶ ±¸Çö 2.2.8-b130911.1802 ¹öÀüÀ» ÅëÇØ »ı¼ºµÇ¾ú½À´Ï´Ù. 
-// <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a>¸¦ ÂüÁ¶ÇÏ½Ê½Ã¿À. 
-// ÀÌ ÆÄÀÏÀ» ¼öÁ¤ÇÏ¸é ¼Ò½º ½ºÅ°¸¶¸¦ ÀçÄÄÆÄÀÏÇÒ ¶§ ¼öÁ¤ »çÇ×ÀÌ ¼Õ½ÇµË´Ï´Ù. 
-// »ı¼º ³¯Â¥: 2019.04.23 ½Ã°£ 12:16:55 PM KST 
+// ì´ íŒŒì¼ì€ JAXB(JavaTM Architecture for XML Binding) ì°¸ì¡° êµ¬í˜„ 2.2.8-b130911.1802 ë²„ì „ì„ í†µí•´ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤. 
+// <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a>ë¥¼ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤. 
+// ì´ íŒŒì¼ì„ ìˆ˜ì •í•˜ë©´ ì†ŒìŠ¤ ìŠ¤í‚¤ë§ˆë¥¼ ì¬ì»´íŒŒì¼í•  ë•Œ ìˆ˜ì • ì‚¬í•­ì´ ì†ì‹¤ë©ë‹ˆë‹¤. 
+// ìƒì„± ë‚ ì§œ: 2019.04.23 ì‹œê°„ 12:16:55 PM KST 
 //
 
 
@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>anonymous complex type¿¡ ´ëÇÑ Java Å¬·¡½ºÀÔ´Ï´Ù.
+ * <p>anonymous complex typeì— ëŒ€í•œ Java í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
  * 
- * <p>´ÙÀ½ ½ºÅ°¸¶ ´ÜÆíÀÌ ÀÌ Å¬·¡½º¿¡ Æ÷ÇÔµÇ´Â ÇÊ¿äÇÑ ÄÜÅÙÃ÷¸¦ ÁöÁ¤ÇÕ´Ï´Ù.
+ * <p>ë‹¤ìŒ ìŠ¤í‚¤ë§ˆ ë‹¨í¸ì´ ì´ í´ë˜ìŠ¤ì— í¬í•¨ë˜ëŠ” í•„ìš”í•œ ì½˜í…ì¸ ë¥¼ ì§€ì •í•©ë‹ˆë‹¤.
  * 
  * <pre>
  * &lt;complexType>
@@ -53,7 +53,7 @@ public class Message {
     protected String cardId;
 
     /**
-     * messageId ¼Ó¼ºÀÇ °ªÀ» °¡Á®¿É´Ï´Ù.
+     * messageId ì†ì„±ì˜ ê°’ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
      * 
      * @return
      *     possible object is
@@ -65,7 +65,7 @@ public class Message {
     }
 
     /**
-     * messageId ¼Ó¼ºÀÇ °ªÀ» ¼³Á¤ÇÕ´Ï´Ù.
+     * messageId ì†ì„±ì˜ ê°’ì„ ì„¤ì •í•©ë‹ˆë‹¤.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +77,7 @@ public class Message {
     }
 
     /**
-     * gateId ¼Ó¼ºÀÇ °ªÀ» °¡Á®¿É´Ï´Ù.
+     * gateId ì†ì„±ì˜ ê°’ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
      * 
      * @return
      *     possible object is
@@ -89,7 +89,7 @@ public class Message {
     }
 
     /**
-     * gateId ¼Ó¼ºÀÇ °ªÀ» ¼³Á¤ÇÕ´Ï´Ù.
+     * gateId ì†ì„±ì˜ ê°’ì„ ì„¤ì •í•©ë‹ˆë‹¤.
      * 
      * @param value
      *     allowed object is
@@ -101,7 +101,7 @@ public class Message {
     }
 
     /**
-     * cardId ¼Ó¼ºÀÇ °ªÀ» °¡Á®¿É´Ï´Ù.
+     * cardId ì†ì„±ì˜ ê°’ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
      * 
      * @return
      *     possible object is
@@ -113,7 +113,7 @@ public class Message {
     }
 
     /**
-     * cardId ¼Ó¼ºÀÇ °ªÀ» ¼³Á¤ÇÕ´Ï´Ù.
+     * cardId ì†ì„±ì˜ ê°’ì„ ì„¤ì •í•©ë‹ˆë‹¤.
      * 
      * @param value
      *     allowed object is
