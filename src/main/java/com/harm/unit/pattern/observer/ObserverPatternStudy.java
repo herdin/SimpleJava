@@ -4,14 +4,15 @@ import com.harm.unit.Unit;
 
 public class ObserverPatternStudy implements Unit {
 	@Override
-	public void excute(Object[] obj) throws Exception {
+	public Object execute(Object[] obj) throws Exception {
+		boolean flag = true;
 		final int observerCnt = 10;
 		ObservableExte observable = new ObservableExte();
 		for(int i=0; i<observerCnt; i++) {
 			new ObserverImpl(observable);
 		}
 		
-		while(true) {
+		while(flag) {
 			int randomUnder100 = (int) (Math.random()*100);
 			if(randomUnder100 < 30) {
 				observable.somethingUpdate("[" + randomUnder100 + " GOT UNDER 30]");
@@ -19,6 +20,8 @@ public class ObserverPatternStudy implements Unit {
 			}
 			Thread.sleep(1000L);
 		}
+
+		return null;
 		
 	}
 }

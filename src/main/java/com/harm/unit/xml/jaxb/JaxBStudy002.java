@@ -19,7 +19,7 @@ public class JaxBStudy002 implements Unit {
 	private Logger logger = LoggerFactory.getLogger(JaxBStudy002.class);
 	
 	@Override
-	public void excute(Object[] obj) throws Exception {
+	public Object execute(Object[] obj) throws Exception {
 		String testDataFullPathStr = new File(this.getClass().getResource("jaxbTestXml02.xml").getPath()).getCanonicalPath();
 		String xmlString = FileUtils.getTextFromFile(testDataFullPathStr);
 		
@@ -41,7 +41,7 @@ public class JaxBStudy002 implements Unit {
 		String marshallData = sw.toString();
 		
 		logger.debug("marshal data : {}", marshallData);
-		
+		return null;
 	}//END OF FUNCTION
 	
 }//END OF CLASS

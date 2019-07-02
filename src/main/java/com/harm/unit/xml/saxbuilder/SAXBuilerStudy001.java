@@ -14,7 +14,7 @@ public class SAXBuilerStudy001 implements Unit {
 	private Logger logger = LoggerFactory.getLogger(SAXBuilder.class);
 	
 	@Override
-	public void excute(Object[] obj) throws Exception {
+	public Object execute(Object[] obj) throws Exception {
 		SAXBuilder saxBuilder = new SAXBuilder();
 		Document document = saxBuilder.build(this.getClass().getResource("saxTestXml02.xml").getPath());
 		Element rootElement = document.getRootElement();
@@ -23,6 +23,7 @@ public class SAXBuilerStudy001 implements Unit {
 		for(Element element : elements) {
 			logger.debug(element.getName());
 		}
+		return null;
 	}//END OF FUNCTION
 
 }//END OF CLASS

@@ -19,17 +19,19 @@ public class DefaultUnitHandler implements InvocationHandler {
 		this.unit = unit;
 	}
 
-	public static void start(DefaultUnitHandler duh) {
-		DefaultUnitHandler.start(duh, null);
+	public static Object start(DefaultUnitHandler duh) {
+		return DefaultUnitHandler.start(duh, null);
 	}//END OF FUNCTION
 	
-	public static void start(DefaultUnitHandler duh, Object[] objects) {
+	public static Object start(DefaultUnitHandler duh, Object[] objects) {
 		Unit proxyUnit = (Unit)Proxy.newProxyInstance(duh.getClass().getClassLoader(), new Class[] {Unit.class}, duh);
+		Object result = null;
 		try {
-			proxyUnit.excute(objects);
+			result = proxyUnit.execute(objects);
 		} catch (Exception e) {
 			DefaultUnitHandler.logger.error(e.getMessage());
 		}
+		return result;
 	}//END OF FUNCTION
 	
 	@Override

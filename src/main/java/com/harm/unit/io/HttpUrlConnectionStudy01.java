@@ -15,7 +15,7 @@ public class HttpUrlConnectionStudy01 implements Unit {
 	private final Logger logger =  LoggerFactory.getLogger(HttpUrlConnectionStudy01.class);
 
 	@Override
-	public void excute(Object[] obj) throws Exception {
+	public Object execute(Object[] obj) throws Exception {
 		BufferedReader br = null;
 		StringBuffer sb = null;
 		try {
@@ -47,6 +47,7 @@ public class HttpUrlConnectionStudy01 implements Unit {
 			if(br != null)
 				br.close();
 		}
+		return null;
 		
 	}//END OF FUNCTION
 	

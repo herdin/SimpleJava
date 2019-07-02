@@ -29,7 +29,7 @@ public class JaxBStudy001 implements Unit {
 	private Logger logger = LoggerFactory.getLogger(JaxBStudy001.class);
 	
 	@Override
-	public void excute(Object[] obj) throws Exception {
+	public Object execute(Object[] obj) throws Exception {
 		String testDataFullPathStr = new File(this.getClass().getResource("jaxbTestXml02.xml").getPath()).getCanonicalPath();
 		String schemaFullPathStr = this.getClass().getResource("schema/TestSchema.xsd").getPath();
 		String xmlString = FileUtils.getTextFromFile(testDataFullPathStr);
@@ -43,6 +43,7 @@ public class JaxBStudy001 implements Unit {
 		
 		String messageStr = this.convertJaxbToXml(Message.class, message, schemaFullPathStr);
 		logger.debug("unmarshall : {}", messageStr);
+		return null;
 	}//END OF FUNCTION
 	
 	private Object convertXmlToJaxb(Class<?> clazz, String xmlString, String schemaFullPath) {

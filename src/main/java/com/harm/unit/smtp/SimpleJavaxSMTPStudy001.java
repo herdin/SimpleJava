@@ -24,7 +24,7 @@ public class SimpleJavaxSMTPStudy001 implements Unit {
 	private Logger logger = LoggerFactory.getLogger(SimpleJavaxSMTPStudy001.class);
 
 	@Override
-	public void excute(Object[] obj) throws Exception {
+	public Object execute(Object[] obj) throws Exception {
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
 		prop.put("mail.smtp.port", 465);
@@ -47,6 +47,7 @@ public class SimpleJavaxSMTPStudy001 implements Unit {
 		message.setContent("������ ����", "text/plain");
 		message.setSentDate(new Date());
 		Transport.send(message);
+		return null;
 	}// END OF FUNCTION
 
 }// END OF CLASS

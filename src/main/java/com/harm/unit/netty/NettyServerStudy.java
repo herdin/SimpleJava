@@ -9,8 +9,9 @@ public class NettyServerStudy implements Unit {
 	private Logger logger = LoggerFactory.getLogger(NettyServerStudy.class);
 	
 	@Override
-	public void excute(Object[] obj) throws Exception {
+	public Object execute(Object[] obj) throws Exception {
 		logger.debug("NETTYNETTY!!");
+		return null;
 	}//END OF FUNCTION
 
 }//END OF CLASS

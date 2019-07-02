@@ -14,7 +14,7 @@ public class CacheStudy001 implements Unit {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
-	public void excute(Object[] objects) throws Exception {
+	public Object execute(Object[] objects) throws Exception {
 		final CacheRepository cr = new CacheRepository(100);
 		
 		LoadingCache<String, CacheTargetObject> lc = CacheBuilder.newBuilder()
