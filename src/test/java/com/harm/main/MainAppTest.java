@@ -2,10 +2,12 @@ package com.harm.main;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
 public class MainAppTest {
 
     @Test
     public void test01() {
-        org.junit.Assert.assertTrue(true);
+        assertTrue(true);
     }
 }

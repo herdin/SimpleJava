@@ -10,20 +10,25 @@ public class CacheRepository {
 	private HashMap<String, CacheTargetObject> repo;
 	public final static String keyPrefix = "repokey";
 	
-	public CacheRepository(int repoSize) {
-		repo = new HashMap<>(repoSize);
+	public CacheRepository(long repoSize) {
+		repo = new HashMap<>((int)repoSize);
 		this.initDefault(repoSize);
 	}
-	private void initDefault(int repoSize) {
+	private void initDefault(long repoSize) {
 		for(int i=0; i<repoSize; i++) {
-			repo.put(keyPrefix + i, new CacheTargetObject("key"+i, "name"+i));
+			repo.put(keyPrefix + i, new CacheTargetObject("id"+i, "name"+i));
 		}
+		this.logger.debug("REPO LIST START");
+		for (String s : repo.keySet()) {
+			this.logger.debug("KEY[{}] ID[{}] NAME[{}]", s, repo.get(s).getId(), repo.get(s).getName());
+		}
+		this.logger.debug("REPO LIST END");
 	}
 	
-	public CacheTargetObject getAfterSleep(String id) {
+	public CacheTargetObject getAfterSleep(String id, long sleepSec) {
 		try {
-			this.logger.debug("LOAD FROM REPOSITORY...");
-			Thread.sleep(5000L);
+			this.logger.debug("LOAD FROM REPOSITORY...[{}]", id);
+			Thread.sleep(sleepSec*1000L);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
