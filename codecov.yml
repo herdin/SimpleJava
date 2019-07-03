@@ -2,7 +2,7 @@ coverage:
   notify:
     slack:
       default:
-        url: "https://hooks.slack.com/services/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"
+        url: "secret:H+wTfrYqVgWNIk6GIYpyB6pzv9kSqoqrFopnZCBtVgsOVXmtueQPC7Cy3pW6SZKpOqBNxdmIB5RA9ZdSTxjCzvBprwa2oIwRbtozjDgkzrVyvohPS44qgWcisz7CTNiCsxxkqKXoAyEutlYv4D+tYKUo/7w9EIZ3XyMU81OJ2G4="
         message: "Coverage {{changed}} for {{owner}}/{{repo}}"
         threshold: 1%
         only_pulls: false
