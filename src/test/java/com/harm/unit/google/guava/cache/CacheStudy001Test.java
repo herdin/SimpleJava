@@ -28,7 +28,7 @@ public class CacheStudy001Test {
         Long result = (Long)DefaultUnitHandler.start(new DefaultUnitHandler(new CacheStudy001()), new Object[]{paramMap});
 
         this.logger.debug("RESULT : {}", result);
-        org.junit.Assert.assertThat(result>90, is(true));
+        org.junit.Assert.assertThat(result>70, is(true));
     }
 
 }
