@@ -25,10 +25,10 @@ public class CacheRepository {
 		this.logger.debug("REPO LIST END");
 	}
 	
-	public CacheTargetObject getAfterSleep(String id, long sleepSec) {
+	public CacheTargetObject getAfterSleep(String id, long sleepMilisec) {
 		try {
 			this.logger.debug("LOAD FROM REPOSITORY...[{}]", id);
-			Thread.sleep(sleepSec*1000L);
+			Thread.sleep(sleepMilisec);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

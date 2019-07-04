@@ -18,11 +18,15 @@ public class CacheStudy001 implements Unit {
 	@Override
 	public Object execute(Object[] objects) throws Exception {
 		Map<String, Long> paramMap = (Map<String, Long>) objects[0];
+
 		long repoSize = paramMap.get("repoSize");
-		long repoLoadSec = paramMap.get("repoLoadSec");
+		long repoLoadMillisec = paramMap.get("repoLoadMillisec");
+
 		long cacheSize = paramMap.get("cacheSize");
-		long expiSec = paramMap.get("expiSec");
-		long testSec = paramMap.get("testSec");
+		long expiMilisec = paramMap.get("expiMilisec");
+
+		long testRequestDurMillisec = paramMap.get("testRequestDurMillisec");
+		long testMillisec = paramMap.get("testMillisec");
 		long testSize = paramMap.get("testSize");
 		long testLoop = paramMap.get("testLoop");
 
@@ -30,26 +34,25 @@ public class CacheStudy001 implements Unit {
 
 		LoadingCache<String, CacheTargetObject> lc = CacheBuilder.newBuilder()
 			.maximumSize(cacheSize)
-			.expireAfterWrite(expiSec, TimeUnit.SECONDS)
+			.expireAfterWrite(expiMilisec, TimeUnit.MILLISECONDS)
 			.build(
 				new CacheLoader<String, CacheTargetObject>() {
 					@Override
 					public CacheTargetObject load(String key) throws Exception {
-						return cr.getAfterSleep(key, repoLoadSec);
+						return cr.getAfterSleep(key, repoLoadMillisec);
 					}
 				}
 			);
 
 		long fail = 0L;
 		for(int i=0; i<testLoop; i++) {
-			Thread.sleep(1000);
+			Thread.sleep(testRequestDurMillisec);
 			int randomKey = (int) (Math.random()*paramMap.get("repoSize")%testSize);
 			long before = System.currentTimeMillis();
 			this.logger.debug("randomKey : {} : lc.get : {}", randomKey, lc.get(CacheRepository.keyPrefix + randomKey));
 			long after = System.currentTimeMillis();
-			long durationSec = (after-before)/1000L;
-			this.logger.debug("load duration sec : {} : after {}, before {}, after-before {}", durationSec, after, before, (after-before));
-			if(durationSec>testSec) {
+			this.logger.debug("load duration millisec : {}, before {}, after {}", (after-before), before, after);
+			if((after-before)>testMillisec) {
 				fail++;
 			}
 		}

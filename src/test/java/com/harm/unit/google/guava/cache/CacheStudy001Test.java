@@ -17,12 +17,15 @@ public class CacheStudy001Test {
     public void test() {
         Map<String, Long> paramMap = new HashMap<>();
         paramMap.put("repoSize", 100L);
-        paramMap.put("repoLoadSec", 2L);
+        paramMap.put("repoLoadMillisec", 10L);
+
         paramMap.put("cacheSize", 10L);
-        paramMap.put("expiSec", 60L);
+        paramMap.put("expiMilisec", 1000L);
+
+        paramMap.put("testRequestDurMillisec", 10L);
         paramMap.put("testSize", 11L);
         paramMap.put("testLoop", 100L);
-        paramMap.put("testSec", 1L);
+        paramMap.put("testMillisec", 5L);
 
 
         Long result = (Long)DefaultUnitHandler.start(new DefaultUnitHandler(new CacheStudy001()), new Object[]{paramMap});
