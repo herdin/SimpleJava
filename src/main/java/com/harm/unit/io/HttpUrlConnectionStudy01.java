@@ -18,6 +18,7 @@ public class HttpUrlConnectionStudy01 implements Unit {
 	public Object execute(Object[] obj) throws Exception {
 		BufferedReader br = null;
 		StringBuffer sb = null;
+		Boolean result = Boolean.TRUE;
 		try {
 			
 			int httpResponseCode = -1;
@@ -43,11 +44,13 @@ public class HttpUrlConnectionStudy01 implements Unit {
 			
 		} catch(Exception e ) {
 			logger.error(e.getMessage());
+			result = Boolean.FALSE;
 		} finally {
 			if(br != null)
 				br.close();
 		}
-		return null;
+
+		return result;
 		
 	}//END OF FUNCTION
 	
