@@ -1,3 +1,5 @@
+codecov:
+  token: 7bbeba9f-6005-444e-b654-a5458237dbb8
 coverage:
   notify:
     slack:
