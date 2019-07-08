@@ -2,7 +2,7 @@ coverage:
   notify:
     slack:
       default:
-        url: "secret:H+wTfrYqVgWNIk6GIYpyB6pzv9kSqoqrFopnZCBtVgsOVXmtueQPC7Cy3pW6SZKpOqBNxdmIB5RA9ZdSTxjCzvBprwa2oIwRbtozjDgkzrVyvohPS44qgWcisz7CTNiCsxxkqKXoAyEutlYv4D+tYKUo/7w9EIZ3XyMU81OJ2G4="
+        url: "secret:EHY0H/V68oGb/wFrt646XaYeZJ+Xo5I2koN1SF9nD1Ug+c1C9STVd6c7iizQ3DFXPDyQG8fWUeL3HpS7tQ5RSh6zlTT7+F7pOgnN6pcaCaLBULCPyPEUR0jLQPdjL7eD4caX5ikzByWFmfSkXX0o7QRdI/gVSE+lSm3KN/aQftw="
         only_pulls: false
         branches: null
         flags: null
