@@ -1,13 +1,7 @@
 package com.harm.main;
 
-import com.harm.unit.DefaultUnitHandler;
-import com.harm.unit.google.guava.cache.CacheStudy001;
-import com.harm.unit.io.HttpUrlConnectionStudy01;
-import com.harm.unit.pattern.observer.ObserverPatternStudy001;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.jnlp.IntegrationService;
 
 public class MainApp {
 	public static Logger logger = LoggerFactory.getLogger(MainApp.class);
