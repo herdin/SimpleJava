@@ -1,6 +1,7 @@
 package com.harm.unit.google.guava.cache;
 
 import com.harm.unit.DefaultUnitHandler;
+import com.harm.unit.xml.UnitRunner;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class CacheStudy001Test {
         paramMap.put("testMillisec", 5L);
 
 
-        Long result = (Long)DefaultUnitHandler.start(new DefaultUnitHandler(new CacheStudy001()), new Object[]{paramMap});
+        Long result = (Long) UnitRunner.start(new DefaultUnitHandler(new CacheStudy001()), new Object[]{paramMap});
 
         this.logger.debug("RESULT : {}", result);
         org.junit.Assert.assertThat(result>70, is(true));

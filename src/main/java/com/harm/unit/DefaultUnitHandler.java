@@ -19,21 +19,6 @@ public class DefaultUnitHandler implements InvocationHandler {
 		this.unit = unit;
 	}
 
-	public static Object start(DefaultUnitHandler duh) {
-		return DefaultUnitHandler.start(duh, null);
-	}//END OF FUNCTION
-	
-	public static Object start(DefaultUnitHandler duh, Object[] objects) {
-		Unit proxyUnit = (Unit)Proxy.newProxyInstance(duh.getClass().getClassLoader(), new Class[] {Unit.class}, duh);
-		Object result = null;
-		try {
-			result = proxyUnit.execute(objects);
-		} catch (Exception e) {
-			DefaultUnitHandler.logger.error(e.getMessage());
-		}
-		return result;
-	}//END OF FUNCTION
-	
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		try {
