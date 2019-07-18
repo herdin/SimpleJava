@@ -22,6 +22,7 @@ public class ObserverPatternStudy001 implements Unit {
 		/* ObservableExte extends java.util.Observable
 		 * ObservableExte can change its status and notify to observer
 		 * by calling Observable.setChanged() and Observable.notifyObservers(Object arg);
+		 *
 		 */
 		ObservableExte observable = new ObservableExte();
 		for(int i=0; i<observerCnt; i++) {

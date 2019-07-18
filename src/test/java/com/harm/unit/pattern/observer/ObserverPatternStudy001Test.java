@@ -1,7 +1,7 @@
 package com.harm.unit.pattern.observer;
 
 import com.harm.unit.DefaultUnitHandler;
-import com.harm.unit.xml.UnitRunner;
+import com.harm.unit.UnitRunner;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -12,7 +12,7 @@ public class ObserverPatternStudy001Test {
 
     @Test
     public void test() {
-        Boolean result = (Boolean) UnitRunner.start(new DefaultUnitHandler(new ObserverPatternStudy001()), new Integer[] {10, 100, 30});
+        Boolean result = (Boolean) UnitRunner.start(new ObserverPatternStudy001(), new Integer[] {10, 100, 30});
         Assert.assertFalse(result);
     }
 }

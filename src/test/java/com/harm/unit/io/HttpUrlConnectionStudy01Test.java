@@ -1,15 +1,10 @@
 package com.harm.unit.io;
 
 import com.harm.unit.DefaultUnitHandler;
-import com.harm.unit.google.guava.cache.CacheStudy001;
-import com.harm.unit.google.guava.cache.CacheStudy001Test;
-import com.harm.unit.xml.UnitRunner;
+import com.harm.unit.UnitRunner;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 

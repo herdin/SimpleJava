@@ -10,12 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DefaultUnitHandler implements InvocationHandler {
-	public static Logger logger = LoggerFactory.getLogger(DefaultUnitHandler.class);
+	private Logger logger = LoggerFactory.getLogger(DefaultUnitHandler.class);
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 	private long startTimeLong = -1L;
 	private Unit unit = null;
 	
 	public DefaultUnitHandler(Unit unit) {
+		this.unit = unit;
+	}
+	public void setUnit(Unit unit) {
 		this.unit = unit;
 	}
 
@@ -34,23 +37,27 @@ public class DefaultUnitHandler implements InvocationHandler {
 	
 	private void beforeExcute() {
 		this.startTimeLong = System.currentTimeMillis();
-		DefaultUnitHandler.logger.debug("----------------------------------------");
-		DefaultUnitHandler.logger.debug("START TIME : {}", sdf.format(new Date()));
-		DefaultUnitHandler.logger.debug("{} STARTED", this.unit.getClass().getSimpleName());
-		DefaultUnitHandler.logger.debug("........................................");
+		this.logger.debug("----------------------------------------");
+		this.logger.debug("| START TIME : {}", sdf.format(new Date()));
+		this.logger.debug("| {} STARTED", this.unit.getClass().getSimpleName());
+		this.logger.debug("........................................");
 	}//END OF FUNCTION
 	
 	private void handleException(Exception e) {
-		DefaultUnitHandler.logger.debug("........................................");
-		DefaultUnitHandler.logger.debug("EXCEPTION HANDLE : {}", e.getMessage());
-		DefaultUnitHandler.logger.debug("........................................");
+		this.logger.debug("........................................");
+		this.logger.debug("| EXCEPTION HANDLE");
+		for(StackTraceElement ste : e.getStackTrace()) {
+			this.logger.debug("| {}", ste.toString());
+		}
+		this.logger.debug("........................................");
 	}//END OF FUNCTION
 	
 	private void afterExcute() {
-		DefaultUnitHandler.logger.debug("........................................");
-		DefaultUnitHandler.logger.debug("END TIME : {}", sdf.format(new Date()));
-		DefaultUnitHandler.logger.debug("RUN TIME : {} SEC", (System.currentTimeMillis()-this.startTimeLong)/1000L);
-		DefaultUnitHandler.logger.debug("----------------------------------------");
+		this.logger.debug("........................................");
+		this.logger.debug("| END TIME : {}", sdf.format(new Date()));
+		this.logger.debug("| RUN TIME : {} SEC", (System.currentTimeMillis()-this.startTimeLong)/1000L);
+		this.logger.debug("| {} END ", this.unit.getClass().getSimpleName());
+		this.logger.debug("----------------------------------------");
 	}//END OF FUNCTION
 	
 }//END OF CLASS

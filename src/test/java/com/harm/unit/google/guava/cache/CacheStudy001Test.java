@@ -1,7 +1,7 @@
 package com.harm.unit.google.guava.cache;
 
 import com.harm.unit.DefaultUnitHandler;
-import com.harm.unit.xml.UnitRunner;
+import com.harm.unit.UnitRunner;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
