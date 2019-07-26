@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name="message")
 @XmlType(propOrder = {"messageId", "gateId", "cardId"})
-public class TestSchemaObject {
+public class SchemaObject002 {
 	
 	private String messageId;
 	private String gateId;

@@ -12,9 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.harm.unit.Unit;
-import com.harm.unit.xml.jaxb.schema.TestSchemaObject;
+import com.harm.unit.xml.jaxb.schema.SchemaObject002;
 import com.harm.utils.FileUtils;
 
+/**
+ * JaxB Study for schema object
+ */
 public class JaxBStudy002 implements Unit {
 	private Logger logger = LoggerFactory.getLogger(JaxBStudy002.class);
 	
@@ -25,9 +28,9 @@ public class JaxBStudy002 implements Unit {
 		
 		logger.debug("raw xml data {}", xmlString);
 		
-		JAXBContext context = JAXBContext.newInstance(TestSchemaObject.class);
+		JAXBContext context = JAXBContext.newInstance(SchemaObject002.class);
 		Unmarshaller unmarshaller = context.createUnmarshaller();
-		TestSchemaObject message = (TestSchemaObject)unmarshaller.unmarshal(new StringReader(xmlString));
+		SchemaObject002 message = (SchemaObject002)unmarshaller.unmarshal(new StringReader(xmlString));
 		
 		logger.debug("unmarshal : {}, {}, {}", message.getMessageId(), message.getGateId(), message.getCardId());
 		

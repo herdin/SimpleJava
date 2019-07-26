@@ -25,6 +25,9 @@ import com.harm.unit.Unit;
 import com.harm.unit.xml.jaxb.object.Message;
 import com.harm.utils.FileUtils;
 
+/**
+ * JaxB Study for .xsd schema file
+ */
 public class JaxBStudy001 implements Unit {
 	private Logger logger = LoggerFactory.getLogger(JaxBStudy001.class);
 	

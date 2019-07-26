@@ -5,15 +5,15 @@ import org.slf4j.LoggerFactory;
 
 public class SyncWithThis extends SyncTarget {
     private Logger logger = LoggerFactory.getLogger(SyncWithThis.class);
-    public SyncWithThis(boolean methodFlag) {
-        super.methodFlag = methodFlag;
+    public SyncWithThis(Boolean flag) {
+        super(flag);
     }
     @Override
     public void manipulate() {
         if(super.methodFlag)
             this.manipulateWithNormalMethod();
         else
-            this.manipulateWithStaticMethod();
+            this.manipulateWithSyncronizedMethod();
     }
 
     private void manipulateWithNormalMethod() {
@@ -21,7 +21,7 @@ public class SyncWithThis extends SyncTarget {
             this.logger.debug("{} : manipulateWithNormalMethod : {}", this.hashCode(), ++SyncTarget.data);
         }
     }
-    private synchronized void manipulateWithStaticMethod() {
-        this.logger.debug("{} : manipulateWithStaticMethod : {}", this.hashCode(), ++SyncTarget.data);
+    private synchronized void manipulateWithSyncronizedMethod() {
+        this.logger.debug("{} : manipulateWithSyncronizedMethod : {}", this.hashCode(), ++SyncTarget.data);
     }
 }

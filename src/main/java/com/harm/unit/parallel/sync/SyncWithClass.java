@@ -5,22 +5,24 @@ import org.slf4j.LoggerFactory;
 
 public class SyncWithClass extends SyncTarget {
     private static Logger logger = LoggerFactory.getLogger(SyncWithClass.class);
-    public SyncWithClass(boolean methodFlag) {
-        super.methodFlag = methodFlag;
+
+    public SyncWithClass(Boolean methodFlag) {
+        super(methodFlag);
     }
+
     @Override
     public void manipulate() {
         if(super.methodFlag)
             this.manipulateWithNormalMethod();
         else
-            SyncWithClass.manipulateWithStaticMethod();
+            SyncWithClass.manipulateWithSyncronizedMethod();
     }
     private void manipulateWithNormalMethod() {
         synchronized (SyncWithClass.class) {
             SyncWithClass.logger.debug("{} : manipulateWithNormalMethod : {}", this.hashCode(), ++SyncTarget.data);
         }
     }
-    private static synchronized void manipulateWithStaticMethod() {
-        SyncWithClass.logger.debug("{} : manipulateWithStaticMethod : {}", "STATIC METHOD NO HASH", ++SyncTarget.data);
+    private static synchronized void manipulateWithSyncronizedMethod() {
+        SyncWithClass.logger.debug("{} : manipulateWithSyncronizedMethod : {}", "STATIC METHOD NO HASH", ++SyncTarget.data);
     }
 }
