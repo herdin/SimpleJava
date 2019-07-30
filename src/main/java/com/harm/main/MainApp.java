@@ -1,7 +1,7 @@
 package com.harm.main;
 
 import com.harm.unit.UnitRunner;
-import com.harm.unit.xml.jaxb.JaxBStudy003;
+import com.harm.unit.recruit.kakao.elevatorgame.ElevatorGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +19,6 @@ public class MainApp {
 //		UnitRunner.start(new DefaultUnitHandler(new RssXmlParseStudy001()), new String[] {"http://dailytravel.co.kr/rss"});
 //		UnitRunner.start(new ObserverPatternStudy001(), new Integer[]{10, 200, 100});
 //		UnitRunner.start(new SyncStudy001(), new Object[]{new Long[]{10L, 100L}, SyncWithThis.class, Boolean.TRUE});
-		new JaxBStudy003().execute(null);
+		UnitRunner.start(new ElevatorGame());
 	}//END OF FUNCTION
 }//END OF CLASS
