@@ -1,6 +1,7 @@
 package com.harm.main;
 
 import com.harm.unit.UnitRunner;
+import com.harm.unit.recruit.kakao.elevatorgame.Elevator;
 import com.harm.unit.recruit.kakao.elevatorgame.ElevatorGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,5 +21,6 @@ public class MainApp {
 //		UnitRunner.start(new ObserverPatternStudy001(), new Integer[]{10, 200, 100});
 //		UnitRunner.start(new SyncStudy001(), new Object[]{new Long[]{10L, 100L}, SyncWithThis.class, Boolean.TRUE});
 		UnitRunner.start(new ElevatorGame());
+
 	}//END OF FUNCTION
 }//END OF CLASS

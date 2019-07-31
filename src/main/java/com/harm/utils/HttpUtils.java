@@ -2,6 +2,7 @@ package com.harm.utils;
 
 import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpStatusClass;
+import io.netty.handler.codec.http.HttpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,9 +44,12 @@ public class HttpUtils {
         String recvStr = null;
 
         try {
-            logger.debug("connect to : " + targetUrl + " : method : " + httpMethod.name() + " : param : " + paramStr);
+            HttpUtils.logger.trace("connect to : {} ", requestUrl);
+            HttpUtils.logger.trace("method : {}", httpMethod.name());
+            HttpUtils.logger.trace("header size : {}", (headerKeys==null)? 0:headerKeys.length);
 
-            if(HttpMethod.GET.name().equals(httpMethod.name())) {
+
+            if(HttpMethod.GET.name().equals(httpMethod.name()) && paramStr != null && paramStr.length() > 0) {
                 targetUrl = targetUrl + "?" + paramStr;
             }
 
@@ -55,9 +59,12 @@ public class HttpUtils {
 
             if(headerKeys != null) {
                 for(int i=0; i<headerKeys.length; i++) {
+                    HttpUtils.logger.trace("header key - value : {} - {}", headerKeys[i], headerValues[i]);
                     conn.setRequestProperty(headerKeys[i], headerValues[i]);
                 }
             }
+
+            HttpUtils.logger.trace("param : {}", paramStr);
 
             if(HttpMethod.GET.name().equals(httpMethod.name())) {
                 ;
@@ -74,16 +81,15 @@ public class HttpUtils {
             }
             int responseCode = conn.getResponseCode();
             BufferedReader br;
-            logger.debug("responseCode : " + responseCode);
-            logger.debug("responseHeader : ");
+            HttpUtils.logger.trace("responseCode : " + responseCode);
+            HttpUtils.logger.trace("responseHeader : ");
             Map<String, List<String>> keysMap = conn.getHeaderFields();
             Iterator<String> keysIter = keysMap.keySet().iterator();
             while(keysIter.hasNext()) {
                 String key = keysIter.next();
                 List<String> values = keysMap.get(key);
-                logger.trace(key + " - ");
                 for(String value : values) {
-                    logger.trace(" : " + value);
+                    HttpUtils.logger.trace("header key - value : {} - {}", key, value);
                 }
             }
 
@@ -98,13 +104,13 @@ public class HttpUtils {
                 res.append(inputLine);
             }
             recvStr = res.toString();
-            logger.debug("recvStr : " + recvStr);
+            HttpUtils.logger.trace("recvStr : " + recvStr);
         } catch (MalformedURLException e) {
-            logger.error(e.getMessage());
+            HttpUtils.logger.error(e.getMessage());
         } catch (ProtocolException e) {
-            logger.error(e.getMessage());
+            HttpUtils.logger.error(e.getMessage());
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            HttpUtils.logger.error(e.getMessage());
         }
         return recvStr;
     }//END OF FUNCTION

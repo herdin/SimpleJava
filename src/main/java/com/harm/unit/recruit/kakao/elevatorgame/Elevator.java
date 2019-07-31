@@ -2,15 +2,13 @@ package com.harm.unit.recruit.kakao.elevatorgame;
 
 public class Elevator {
     public enum STATUS {
-        STOPPED,
-        OPENED,
-        UPWARD,
-        DOWNWARD,
+        STOPPED, OPENED, UPWARD, DOWNWARD,
     }
+    public static final int MAX_CALL = 8;
     private int id;
     private int floor;
-    public Call[] passengers;
-    public STATUS status;
+    private Call[] passengers;
+    private STATUS status;
 
     public int getId() {
         return id;
