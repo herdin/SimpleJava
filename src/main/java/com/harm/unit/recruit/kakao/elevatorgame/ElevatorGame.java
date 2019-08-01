@@ -15,6 +15,9 @@ public class ElevatorGame implements Unit {
     public enum PROBLEMS {
         APEACH, JAY_G, RYAN
     }
+    public enum ELEVATOR_COUNT {
+        DUMMY, ONE, TWO, THREE, FOUR
+    }
     public static class API {
         public interface COMMUNICAPABLE {
             ElevatorGameServerResponse communicate() throws IOException;
@@ -86,9 +89,8 @@ public class ElevatorGame implements Unit {
         try {
 
             ElevatorGameServerResponse resObj = null;
-            Elevator[] prevElevator = null;
 
-            API.START start = new API.START(API.USER_KEY, PROBLEMS.APEACH.ordinal(), 1);
+            API.START start = new API.START(API.USER_KEY, PROBLEMS.APEACH.ordinal(), ELEVATOR_COUNT.ONE.ordinal());
             resObj = start.communicate();
 
             API.ONCALLS oncalls = new API.ONCALLS();
@@ -96,70 +98,17 @@ public class ElevatorGame implements Unit {
             while(!resObj.isIs_end()) {
 
                 resObj = oncalls.communicate();
-                prevElevator = resObj.getElevators();
                 Elevator[] elevators = resObj.getElevators();
 
                 for(Elevator elevator : elevators) {
                     this.logger.debug("TIMESTAMP : {} : ELEVATOR : {} : {}", resObj.getTimestamp(), elevator.getId(), elevator.getStatus().toString());
                 }
 
-                ArrayList<Command> commandList = new ArrayList<>();
-                if(resObj.getCalls().length > 0) {
-
-                    for(Call call : resObj.getCalls()) {
-                        this.logger.debug("TIMESTAMP : {} : CALL : {} at {}, {} -> {}", resObj.getTimestamp(), call.getId(), call.getTimestamp(), call.getStart(), call.getEnd());
-
-//                        Elevator nearestElevator = null;
-//                        for(int i=0; i<elevators.length; i++) {
-//                            if(nearestElevator == null) {
-//                                nearestElevator = elevators[i];
-//                            } else {
-//                                if(nearestElevator.getPassengers().length < 8 && elevators[i].getPassengers().length < 8) {
-//                                    if(nearestElevator.getFloor() == call.getStart()) {
-//                                        break;
-//                                    } else if(elevators[i].getFloor() == call.getStart()) {
-//                                        nearestElevator = elevators[i];
-//                                        break;
-//                                    }
-//                                    int nearAndCall = call.getStart() - nearestElevator.getFloor();
-//                                    int nextAndCall = call.getStart() - elevators[i].getFloor();
-//                                    if(Math.abs(nearAndCall) > Math.abs(nearAndCall)) {
-//                                        nearestElevator = elevators[i];
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        if(nearestElevator.getFloor() - call.getStart() > 0) { //elevator > call
-//                            Command.CODE code = null;
-//                            switch (nearestElevator.getStatus()) {
-//                                case OPENED: code = Command.CODE.CLOSE; break;
-//                                case STOPPED: code = Command.CODE.DOWN; break;
-//                                case UPWARD: code = Command.CODE.STOP; break;
-//                                case DOWNWARD:
-//                            }
-//                            commandList.add(
-//                                    new Command.Builder()
-//                                    .elevatorId(nearestElevator.getId())
-//                                    .command(Command.CODE.CLOSE)
-//                                    .build()
-//                            );
-//                        }
-
-                    }
-
-
-
-                } else {
-
+                for(Call call : resObj.getCalls()) {
+                    this.logger.debug("TIMESTAMP : {} : CALLL : {} at {}, {} >> {}", call.getId(), call.getTimestamp(), call.getStart(), call.getEnd());
                 }
-                Commands commands = new Commands();
-                commands.setCommands(new Command[]{
-                        new Command.Builder()
-                            .elevatorId(0)
-                            .command(Command.CODE.UP)
-                            .callIds(new int[]{})
-                            .build()
-                });
+
+                Commands commands = this.simple(resObj);
                 API.ACTION action = new API.ACTION(commands);
                 resObj = action.communicate();
 
@@ -170,6 +119,14 @@ public class ElevatorGame implements Unit {
             e.printStackTrace();
         }
         return true; //always true
+    }
+
+    public Commands simple(ElevatorGameServerResponse elevatorGameServerResponse) {
+        ArrayList<Command> commandList = new ArrayList<>();
+        commandList.add(new Command.Builder().elevatorId(0).command(Command.CODE.UP).callIds(new int[]{}).build());
+        Commands commands = new Commands();
+        commands.setCommands(commandList.toArray(new Command[commandList.size()]));
+        return commands;
     }
 
 }

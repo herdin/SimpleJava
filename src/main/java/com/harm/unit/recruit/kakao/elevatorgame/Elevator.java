@@ -4,12 +4,18 @@ public class Elevator {
     public enum STATUS {
         STOPPED, OPENED, UPWARD, DOWNWARD,
     }
-    public static final int MAX_CALL = 8;
+    private static final int MAX_CALL = 8;
     private int id;
     private int floor;
     private Call[] passengers;
     private STATUS status;
 
+    public boolean skip = false;
+
+    public boolean isNotFull() {
+        return Elevator.MAX_CALL > this.getPassengers().length;
+
+    }
     public int getId() {
         return id;
     }

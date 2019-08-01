@@ -1,10 +1,14 @@
 package com.harm.main;
 
 import com.harm.unit.UnitRunner;
+import com.harm.unit.recruit.kakao.elevatorgame.Command;
 import com.harm.unit.recruit.kakao.elevatorgame.Elevator;
 import com.harm.unit.recruit.kakao.elevatorgame.ElevatorGame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainApp {
 	public static Logger logger = LoggerFactory.getLogger(MainApp.class);
