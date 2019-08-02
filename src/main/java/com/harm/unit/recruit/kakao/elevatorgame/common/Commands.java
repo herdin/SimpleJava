@@ -1,8 +1,11 @@
-package com.harm.unit.recruit.kakao.elevatorgame;
+package com.harm.unit.recruit.kakao.elevatorgame.common;
 
 public class Commands {
     Command[] commands;
 
+    public Commands(Command[] commands) {
+        this.commands = commands;
+    }
     public Command[] getCommands() {
         return commands;
     }

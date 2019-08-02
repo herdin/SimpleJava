@@ -1,10 +1,18 @@
-package com.harm.unit.recruit.kakao.elevatorgame;
+package com.harm.unit.recruit.kakao.elevatorgame.common;
 
 public class Call {
     private int id;
     private int timestamp;
     private int start;
     private int end;
+    private boolean check = false;
+
+    public void checked() {
+        this.check = true;
+    }
+    public boolean isChecked() {
+        return this.check;
+    }
 
     public int getId() {
         return id;

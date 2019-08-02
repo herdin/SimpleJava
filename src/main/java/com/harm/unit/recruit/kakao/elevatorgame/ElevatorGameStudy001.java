@@ -2,6 +2,7 @@ package com.harm.unit.recruit.kakao.elevatorgame;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.harm.unit.Unit;
+import com.harm.unit.recruit.kakao.elevatorgame.common.*;
 import com.harm.utils.HttpUtils;
 import io.netty.handler.codec.http.HttpMethod;
 import org.slf4j.Logger;
@@ -10,10 +11,26 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ElevatorGame implements Unit {
-    private Logger logger = LoggerFactory.getLogger(ElevatorGame.class);
+public class ElevatorGameStudy001 implements Unit {
+    private Logger logger = LoggerFactory.getLogger(ElevatorGameStudy001.class);
+    private PROBLEMS problems;
+    private ELEVATOR_COUNT elevatorCount;
+    private ElevatorStrategy elevatorStrategy;
     public enum PROBLEMS {
-        APEACH, JAY_G, RYAN
+        APEACH(1, 5), JAY_G(2, 25), RYAN(3, 25),
+        ;
+        private int problemId;
+        private int topFloor;
+        PROBLEMS(int problemId, int topFloor) {
+            this.problemId = problemId;
+            this.topFloor = topFloor;
+        }
+        public int getProblemId() {
+            return this.problemId;
+        }
+        public int getTopFloor() {
+            return this.topFloor;
+        }
     }
     public enum ELEVATOR_COUNT {
         DUMMY, ONE, TWO, THREE, FOUR
@@ -82,15 +99,20 @@ public class ElevatorGame implements Unit {
         }
     }
 
-
+    public ElevatorGameStudy001(PROBLEMS problems, ElevatorStrategy elevatorStrategy, ELEVATOR_COUNT elevatorCount) {
+        this.problems = problems;
+        this.elevatorStrategy = elevatorStrategy;
+        this.elevatorCount = elevatorCount;
+    }
 
     @Override
     public Object execute(Object[] obj) throws Exception {
+
         try {
 
             ElevatorGameServerResponse resObj = null;
 
-            API.START start = new API.START(API.USER_KEY, PROBLEMS.APEACH.ordinal(), ELEVATOR_COUNT.ONE.ordinal());
+            API.START start = new API.START(API.USER_KEY, this.problems.getProblemId(), this.elevatorCount.ordinal());
             resObj = start.communicate();
 
             API.ONCALLS oncalls = new API.ONCALLS();
@@ -105,10 +127,10 @@ public class ElevatorGame implements Unit {
                 }
 
                 for(Call call : resObj.getCalls()) {
-                    this.logger.debug("TIMESTAMP : {} : CALLL : {} at {}, {} >> {}", call.getId(), call.getTimestamp(), call.getStart(), call.getEnd());
+                    this.logger.debug("TIMESTAMP : {} : CALLL : {} at {}, {} >> {}", resObj.getTimestamp(), call.getId(), call.getTimestamp(), call.getStart(), call.getEnd());
                 }
 
-                Commands commands = this.simple(resObj);
+                Commands commands = this.elevatorStrategy.getCommands(this.problems, resObj);
                 API.ACTION action = new API.ACTION(commands);
                 resObj = action.communicate();
 
@@ -121,12 +143,5 @@ public class ElevatorGame implements Unit {
         return true; //always true
     }
 
-    public Commands simple(ElevatorGameServerResponse elevatorGameServerResponse) {
-        ArrayList<Command> commandList = new ArrayList<>();
-        commandList.add(new Command.Builder().elevatorId(0).command(Command.CODE.UP).callIds(new int[]{}).build());
-        Commands commands = new Commands();
-        commands.setCommands(commandList.toArray(new Command[commandList.size()]));
-        return commands;
-    }
 
 }

@@ -1,6 +1,4 @@
-package com.harm.unit.recruit.kakao.elevatorgame;
-
-import com.sun.org.apache.bcel.internal.classfile.Code;
+package com.harm.unit.recruit.kakao.elevatorgame.common;
 
 public class Command {
     public enum CODE {
@@ -29,7 +27,7 @@ public class Command {
         public Command build() {
             Command command = new Command();
             command.setElevator_id(this.elevator_id);
-            command.setCommand(this.command.name());
+            command.setCommand(this.command);
             command.setCall_ids(this.call_ids);
             return command;
         }
@@ -43,17 +41,18 @@ public class Command {
         this.elevator_id = elevator_id;
     }
 
-    public String getCommand() {
-        return command.name();
+    public CODE getCommand() {
+        return command;
     }
 
-    public void setCommand(String command) {
-        for(CODE code : CODE.values()) {
-            if(code.name().equals(command)) {
-                this.command = code;
-                break;
-            }
-        }
+    public void setCommand(CODE command) {
+        this.command = command;
+//        for(CODE code : CODE.values()) {
+//            if(code.name().equals(command)) {
+//                this.command = code;
+//                break;
+//            }
+//        }
     }
 
     public int[] getCall_ids() {

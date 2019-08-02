@@ -1,4 +1,4 @@
-package com.harm.unit.recruit.kakao.elevatorgame;
+package com.harm.unit.recruit.kakao.elevatorgame.common;
 
 public class Elevator {
     public enum STATUS {
@@ -10,12 +10,17 @@ public class Elevator {
     private Call[] passengers;
     private STATUS status;
 
-    public boolean skip = false;
-
     public boolean isNotFull() {
         return Elevator.MAX_CALL > this.getPassengers().length;
 
     }
+    public boolean isEmpty() {
+        return this.getPassengers().length == 0;
+    }
+
+
+
+
     public int getId() {
         return id;
     }
@@ -44,13 +49,14 @@ public class Elevator {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = STATUS.STOPPED;
-        for(STATUS stat: STATUS.values()) {
-            if(stat.toString().equals(status)) {
-                this.status = stat;
-                break;
-            }
-        }
+    public void setStatus(STATUS status) {
+        this.status = status;
+//        this.status = STATUS.STOPPED;
+//        for(STATUS stat: STATUS.values()) {
+//            if(stat.toString().equals(status)) {
+//                this.status = stat;
+//                break;
+//            }
+//        }
     }
 }

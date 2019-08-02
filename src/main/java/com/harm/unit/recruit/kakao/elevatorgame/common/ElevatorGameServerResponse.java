@@ -1,4 +1,4 @@
-package com.harm.unit.recruit.kakao.elevatorgame;
+package com.harm.unit.recruit.kakao.elevatorgame.common;
 
 public class ElevatorGameServerResponse {
 
