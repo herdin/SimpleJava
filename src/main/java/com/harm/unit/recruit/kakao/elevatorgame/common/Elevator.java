@@ -1,25 +1,26 @@
 package com.harm.unit.recruit.kakao.elevatorgame.common;
 
 public class Elevator {
-    public enum STATUS {
-        STOPPED, OPENED, UPWARD, DOWNWARD,
-    }
-    private static final int MAX_CALL = 8;
+
     private int id;
     private int floor;
     private Call[] passengers;
     private STATUS status;
 
-    public boolean isNotFull() {
-        return Elevator.MAX_CALL > this.getPassengers().length;
-
+    public enum STATUS {
+        STOPPED, OPENED, UPWARD, DOWNWARD,
     }
+    private static final int MAX_CALL = 8;
+
     public boolean isEmpty() {
         return this.getPassengers().length == 0;
     }
-
-
-
+    public boolean isFull() {
+        return this.getPassengers().length == MAX_CALL;
+    }
+    public int capablePassengerCount() {
+        return Elevator.MAX_CALL - this.passengers.length;
+    }
 
     public int getId() {
         return id;

@@ -2,8 +2,6 @@ package com.harm.main;
 
 import com.harm.unit.UnitRunner;
 import com.harm.unit.recruit.kakao.elevatorgame.ElevatorGameStudy001;
-import com.harm.unit.recruit.kakao.elevatorgame.ElevatorGameStudy001.ELEVATOR_COUNT;
-import com.harm.unit.recruit.kakao.elevatorgame.ElevatorGameStudy001.PROBLEMS;
 import com.harm.unit.recruit.kakao.elevatorgame.SimpleElevatorStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +20,6 @@ public class MainApp {
 //		UnitRunner.start(new DefaultUnitHandler(new RssXmlParseStudy001()), new String[] {"http://dailytravel.co.kr/rss"});
 //		UnitRunner.start(new ObserverPatternStudy001(), new Integer[]{10, 200, 100});
 //		UnitRunner.start(new SyncStudy001(), new Object[]{new Long[]{10L, 100L}, SyncWithThis.class, Boolean.TRUE});
-		UnitRunner.start(new ElevatorGameStudy001(PROBLEMS.APEACH, new SimpleElevatorStrategy(), ELEVATOR_COUNT.ONE));
-//		MainApp.logger.debug("ordinal {}", ElevatorGameStudy001.PROBLEMS.JAY_G.ordinal());
-
+		UnitRunner.start(new ElevatorGameStudy001("12", ElevatorGameStudy001.PROBLEMS.JAY_G, new SimpleElevatorStrategy(), ElevatorGameStudy001.ELEVATOR_COUNT.TWO));
 	}//END OF FUNCTION
 }//END OF CLASS
