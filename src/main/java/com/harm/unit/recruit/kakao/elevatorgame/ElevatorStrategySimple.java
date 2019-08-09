@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 */
 
-public class SimpleElevatorStrategy implements ElevatorStrategy {
+public class ElevatorStrategySimple implements ElevatorStrategy {
     @Override
     public Commands getCommands(ElevatorGameServerResponse elevatorGameServerResponse) {
         ArrayList<Command> commandList = new ArrayList<>();
@@ -27,10 +27,10 @@ public class SimpleElevatorStrategy implements ElevatorStrategy {
 
             ArrayList<Call> nearestCallList = null;
             ArrayList<Integer> call_id_list = new ArrayList<>();
-            Command.CODE code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.OPEN);
+            Command.CODE code = Command.getProperNextCode(elevator, Command.CODE.OPEN);
 
             if(elevator.isEmpty() && calls.length == 0) {
-                code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.OPEN);
+                code = Command.getProperNextCode(elevator, Command.CODE.OPEN);
             } else {
                 /*
                 elevator is not empty || call is exists
@@ -42,11 +42,11 @@ public class SimpleElevatorStrategy implements ElevatorStrategy {
                     nearestCallList = this.getNearestCallListFromElevatorCurrentFloor(elevator, calls);
                     if(nearestCallList.size() > 0) {
                         if(nearestCallList.get(0).getStart() > elevator.getFloor()) {
-                            code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.UP);
+                            code = Command.getProperNextCode(elevator, Command.CODE.UP);
                         } else if(nearestCallList.get(0).getStart() < elevator.getFloor()) {
-                            code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.DOWN);
+                            code = Command.getProperNextCode(elevator, Command.CODE.DOWN);
                         } else {
-                            code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.ENTER);
+                            code = Command.getProperNextCode(elevator, Command.CODE.ENTER);
                             while(nearestCallList.size() > elevator.capablePassengerCount()) {
                                 nearestCallList.remove(nearestCallList.size()-1);
                             }
@@ -55,18 +55,18 @@ public class SimpleElevatorStrategy implements ElevatorStrategy {
                 } else {
                     ArrayList<Call> nearestPassengerList = this.getNearestCallListFromElevatorPassenger(elevator);
                     if(nearestPassengerList.get(0).getEnd() > elevator.getFloor()) {
-                        code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.UP);
+                        code = Command.getProperNextCode(elevator, Command.CODE.UP);
                     } else if(nearestPassengerList.get(0).getEnd() < elevator.getFloor()) {
-                        code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.DOWN);
+                        code = Command.getProperNextCode(elevator, Command.CODE.DOWN);
                     } else {
-                        code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.EXIT);
+                        code = Command.getProperNextCode(elevator, Command.CODE.EXIT);
                         nearestCallList = nearestPassengerList;
                     }
 
                     if(!elevator.isFull()) {
                         ArrayList<Call> additionalNearestCallList = this.getNearestCallListFromElevatorCurrentFloor(elevator, calls);
                         if(additionalNearestCallList.size() > 0 && additionalNearestCallList.get(0).getStart() == elevator.getFloor()) {
-                            code = Command.getProperNextCode(elevator.getStatus(), Command.CODE.ENTER);
+                            code = Command.getProperNextCode(elevator, Command.CODE.ENTER);
                             nearestCallList = additionalNearestCallList;
                             while(nearestCallList.size() > elevator.capablePassengerCount()) {
                                 nearestCallList.remove(nearestCallList.size()-1);
@@ -78,30 +78,23 @@ public class SimpleElevatorStrategy implements ElevatorStrategy {
 
             switch(code) {
                 case ENTER:
-                    if(nearestCallList.size() > 0) {
-                        for(Call nearestCall : nearestCallList) {
-                            for(Call recvCall : calls) {
-                                if(nearestCall.getId() == recvCall.getId()) {
-                                    recvCall.checked();
-                                }
+                    for(Call nearestCall : nearestCallList) {
+                        for(Call recvCall : calls) {
+                            if(nearestCall.getId() == recvCall.getId()) {
+                                recvCall.checked();
                             }
                         }
                     }
                 case EXIT:
-                    if(nearestCallList.size() > 0) {
-                        for(Call nearestCall : nearestCallList) {
-                            call_id_list.add(nearestCall.getId());
-                        }
+                    for(Call nearestCall : nearestCallList) {
+                        call_id_list.add(nearestCall.getId());
                     }
-                    break;
             }
 
             command.setCommand(code);
             command.setCall_ids(call_id_list.toArray(new Integer[call_id_list.size()]));
         }//END OF FOR-LOOP FOR ELEVATOR
 
-        /*for test just run no meaning*/
-//        commandList.add(new Command.Builder().elevatorId(0).command(Command.CODE.UP).callIds(new int[]{}).build());
         return new Commands(commandList.toArray(new Command[commandList.size()]));
     }
 

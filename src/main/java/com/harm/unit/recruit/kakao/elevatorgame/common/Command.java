@@ -12,7 +12,8 @@ public class Command {
     private CODE command;
     private Integer[] call_ids;
 
-    public static CODE getProperNextCode(Elevator.STATUS currentStatus, CODE targetCode) {
+    public static CODE getProperNextCode(Elevator elevator, CODE targetCode) {
+        Elevator.STATUS currentStatus = elevator.getStatus();
         CODE properCode = targetCode;
         switch(currentStatus) {
             case UPWARD:

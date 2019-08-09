@@ -10,10 +10,17 @@ import java.util.ArrayList;
 import static com.harm.unit.recruit.kakao.elevatorgame.common.Command.CODE;
 
 public interface ElevatorStrategy {
+
     Commands getCommands(ElevatorGameServerResponse elevatorGameServerResponse);
+
     default CODE getDefaultElevatorBehavior(Elevator elevator) {
         return CODE.STOP;
     }
+
+    default boolean isFirstFloorNearFromElevator(int firstFloor, int secondFloor, Elevator elevator) {
+        return Math.abs(elevator.getFloor()-firstFloor) < Math.abs(elevator.getFloor()-secondFloor);
+    }
+
     //TODO 방향을 구하기위해서 call 하나만 구하고 나중에 나머지를 구해도 될것 같은데
     default ArrayList<Call> getNearestCallListFromElevatorCurrentFloor(Elevator elevator, Call[] calls) {
         ArrayList<Call> nearestCallList = new ArrayList<>();
@@ -24,9 +31,7 @@ public interface ElevatorStrategy {
                 if(nearestCall == null) {
                     nearestCall = call;
                 } else {
-                    int diffOld = Math.abs(elevator.getFloor()-nearestCall.getStart());
-                    int diffNew = Math.abs(elevator.getFloor()-call.getStart());
-                    if(diffNew < diffOld) {
+                    if(this.isFirstFloorNearFromElevator(call.getStart(), nearestCall.getStart(), elevator)) {
                         nearestCall = call;
                     }
                 }
@@ -54,9 +59,7 @@ public interface ElevatorStrategy {
             if(nearestPassenger == null) {
                 nearestPassenger = passenger;
             } else {
-                int diffOld = Math.abs(elevator.getFloor()-nearestPassenger.getEnd());
-                int diffNew = Math.abs(elevator.getFloor()-passenger.getEnd());
-                if(diffNew < diffOld) {
+                if(this.isFirstFloorNearFromElevator(passenger.getEnd(), nearestPassenger.getEnd(), elevator)) {
                     nearestPassenger = passenger;
                 }
             }

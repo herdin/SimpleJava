@@ -3,13 +3,18 @@ package com.harm.unit.recruit.kakao.elevatorgame;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.harm.unit.Unit;
-import com.harm.unit.recruit.kakao.elevatorgame.common.*;
+import com.harm.unit.recruit.kakao.elevatorgame.common.Call;
+import com.harm.unit.recruit.kakao.elevatorgame.common.Commands;
+import com.harm.unit.recruit.kakao.elevatorgame.common.Elevator;
+import com.harm.unit.recruit.kakao.elevatorgame.common.ElevatorGameServerResponse;
 import com.harm.utils.HttpUtils;
 import io.netty.handler.codec.http.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ElevatorGameStudy001 implements Unit {
     private Logger logger = LoggerFactory.getLogger(ElevatorGameStudy001.class);
@@ -121,6 +126,7 @@ public class ElevatorGameStudy001 implements Unit {
 
         try {
 
+            Set<Integer> totalCall = new HashSet<Integer>();
             ElevatorGameServerResponse resObj = null;
 
             API.START start = new API.START(this.userKey, this.problems.getProblemId(), this.elevatorCount.ordinal());
@@ -134,11 +140,12 @@ public class ElevatorGameStudy001 implements Unit {
                 Elevator[] elevators = resObj.getElevators();
 
                 for(Elevator elevator : elevators) {
-                    this.logger.debug("TIMESTAMP : {} : ELEVATOR {} : {} F : {}", resObj.getTimestamp(), elevator.getId(), elevator.getFloor(), elevator.getStatus().toString());
+                    this.logger.debug("TIMESTAMP : {} : ELEVATOR {} : {} F  {} P : {}", resObj.getTimestamp(), elevator.getId(), elevator.getFloor(), elevator.getPassengers().length, elevator.getStatus().toString());
                 }
 
                 for(Call call : resObj.getCalls()) {
-                    this.logger.debug("TIMESTAMP : {} : CALL {} : {}, {} >> {}", resObj.getTimestamp(), call.getId(), call.getTimestamp(), call.getStart(), call.getEnd());
+                    totalCall.add(call.getId());
+                    this.logger.debug("TIMESTAMP : {} : TOTAL CALL {} CURRENT CALL {} : {}, {} >> {}", resObj.getTimestamp(), totalCall.size(), call.getId(), call.getTimestamp(), call.getStart(), call.getEnd());
                 }
 
                 Commands commands = this.elevatorStrategy.getCommands(resObj);
