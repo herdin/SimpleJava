@@ -140,12 +140,15 @@ public class ElevatorGameStudy001 implements Unit {
                 Elevator[] elevators = resObj.getElevators();
 
                 for(Elevator elevator : elevators) {
-                    this.logger.debug("TIMESTAMP : {} : ELEVATOR {} : {} F  {} P : {}", resObj.getTimestamp(), elevator.getId(), elevator.getFloor(), elevator.getPassengers().length, elevator.getStatus().toString());
+                    this.logger.debug("TIMESTAMP : {} : ELEVATOR ID {} : {} F  {} P : {}", resObj.getTimestamp(), elevator.getId(), elevator.getFloor(), elevator.getPassengers().length, elevator.getStatus().toString());
+                    for(Call call : elevator.getPassengers()) {
+                        this.logger.debug("PASSENGER ID {} : {} >> {} ({})", call.getId(), call.getStart(), call.getEnd(), call.getTimestamp());
+                    }
                 }
 
                 for(Call call : resObj.getCalls()) {
                     totalCall.add(call.getId());
-                    this.logger.debug("TIMESTAMP : {} : TOTAL CALL {} CURRENT CALL {} : {}, {} >> {}", resObj.getTimestamp(), totalCall.size(), call.getId(), call.getTimestamp(), call.getStart(), call.getEnd());
+                    this.logger.debug("TIMESTAMP : {} : TOTAL CALL COUNT {} CURRENT CALL ID {} : {} F >> {} F ({})", resObj.getTimestamp(), totalCall.size(), call.getId(), call.getStart(), call.getEnd(), call.getTimestamp());
                 }
 
                 Commands commands = this.elevatorStrategy.getCommands(resObj);

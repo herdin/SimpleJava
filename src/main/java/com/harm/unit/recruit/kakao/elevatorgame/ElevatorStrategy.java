@@ -1,9 +1,6 @@
 package com.harm.unit.recruit.kakao.elevatorgame;
 
-import com.harm.unit.recruit.kakao.elevatorgame.common.Call;
-import com.harm.unit.recruit.kakao.elevatorgame.common.Commands;
-import com.harm.unit.recruit.kakao.elevatorgame.common.Elevator;
-import com.harm.unit.recruit.kakao.elevatorgame.common.ElevatorGameServerResponse;
+import com.harm.unit.recruit.kakao.elevatorgame.common.*;
 
 import java.util.ArrayList;
 
@@ -17,7 +14,7 @@ public interface ElevatorStrategy {
         return CODE.STOP;
     }
 
-    default boolean isFirstFloorNearFromElevator(int firstFloor, int secondFloor, Elevator elevator) {
+    default boolean isFirstNearFromElevator(int firstFloor, int secondFloor, Elevator elevator) {
         return Math.abs(elevator.getFloor()-firstFloor) < Math.abs(elevator.getFloor()-secondFloor);
     }
 
@@ -31,7 +28,7 @@ public interface ElevatorStrategy {
                 if(nearestCall == null) {
                     nearestCall = call;
                 } else {
-                    if(this.isFirstFloorNearFromElevator(call.getStart(), nearestCall.getStart(), elevator)) {
+                    if(this.isFirstNearFromElevator(call.getStart(), nearestCall.getStart(), elevator)) {
                         nearestCall = call;
                     }
                 }
@@ -59,7 +56,7 @@ public interface ElevatorStrategy {
             if(nearestPassenger == null) {
                 nearestPassenger = passenger;
             } else {
-                if(this.isFirstFloorNearFromElevator(passenger.getEnd(), nearestPassenger.getEnd(), elevator)) {
+                if(this.isFirstNearFromElevator(passenger.getEnd(), nearestPassenger.getEnd(), elevator)) {
                     nearestPassenger = passenger;
                 }
             }
@@ -71,5 +68,17 @@ public interface ElevatorStrategy {
             }
         }
         return nearestPassengerList;
+    }
+
+    default CODE getCodeByElevatorPositionWithTargetFloor(Elevator elevator, int targetFloor, CODE elevatorReachCode) {
+        CODE properCode = null;
+        if(targetFloor > elevator.getFloor()) {
+            properCode = Command.getProperNextCode(elevator, Command.CODE.UP);
+        } else if(targetFloor < elevator.getFloor()) {
+            properCode = Command.getProperNextCode(elevator, Command.CODE.DOWN);
+        } else {
+            properCode = Command.getProperNextCode(elevator, elevatorReachCode);
+        }
+        return properCode;
     }
 }

@@ -81,7 +81,7 @@ public class HttpUtils {
             }
             int responseCode = conn.getResponseCode();
             BufferedReader br;
-            HttpUtils.logger.trace("responseCode : " + responseCode);
+            HttpUtils.logger.trace("responseCode : {}", responseCode);
             HttpUtils.logger.trace("responseHeader : ");
             Map<String, List<String>> keysMap = conn.getHeaderFields();
             Iterator<String> keysIter = keysMap.keySet().iterator();
@@ -104,7 +104,7 @@ public class HttpUtils {
                 res.append(inputLine);
             }
             recvStr = res.toString();
-            HttpUtils.logger.trace("recvStr : " + recvStr);
+            HttpUtils.logger.trace("recvStr : {}", recvStr);
         } catch (MalformedURLException e) {
             HttpUtils.logger.error(e.getMessage());
         } catch (ProtocolException e) {

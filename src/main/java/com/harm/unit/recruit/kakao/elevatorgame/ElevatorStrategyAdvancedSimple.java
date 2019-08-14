@@ -39,51 +39,45 @@ public class ElevatorStrategyAdvancedSimple implements ElevatorStrategy {
                   - elevator is not empty, call is     empty -> exit
                   - elevator is not empty, call is not empty -> exit and enter
                 */
+                /* elevator is empty */
                 if(elevator.isEmpty()) {
                     nearestCallList = this.getNearestCallListFromElevatorCurrentFloor(elevator, calls);
+                    /* unchecked call is not empty */
                     if(nearestCallList.size() > 0) {
-                        if(nearestCallList.get(0).getStart() > elevator.getFloor()) {
-                            code = Command.getProperNextCode(elevator, Command.CODE.UP);
-                        } else if(nearestCallList.get(0).getStart() < elevator.getFloor()) {
-                            code = Command.getProperNextCode(elevator, Command.CODE.DOWN);
-                        } else {
-                            code = Command.getProperNextCode(elevator, Command.CODE.ENTER);
+                        code = this.getCodeByElevatorPositionWithTargetFloor(elevator, nearestCallList.get(0).getStart(), Command.CODE.ENTER);
+                        if(Command.CODE.ENTER.equals(code)) {
                             while(nearestCallList.size() > elevator.capablePassengerCount()) {
                                 nearestCallList.remove(nearestCallList.size()-1);
                             }
                         }
                     }
-                } else {
+                    /* unchecked call is empty */
+                    else {
+                        code = Command.getProperNextCode(elevator, Command.CODE.OPEN);
+                    }
+                }
+                /* elevator is not empty */
+                else {
                     nearestPassengerList = this.getNearestCallListFromElevatorPassenger(elevator);
                     nearestCallList = this.getNearestCallListFromElevatorCurrentFloor(elevator, calls);
 
+                    /* elevator is full || unchecked call is empty */
                     if(elevator.isFull() || nearestCallList.size() == 0) {
-                        //elevator is full or nearest call list is empty
-                        if(nearestPassengerList.get(0).getEnd() > elevator.getFloor()) {
-                            code = Command.getProperNextCode(elevator, Command.CODE.UP);
-                        } else if(nearestPassengerList.get(0).getEnd() < elevator.getFloor()) {
-                            code = Command.getProperNextCode(elevator, Command.CODE.DOWN);
-                        } else {
-                            code = Command.getProperNextCode(elevator, Command.CODE.EXIT);
+                        code = this.getCodeByElevatorPositionWithTargetFloor(elevator, nearestPassengerList.get(0).getEnd(), Command.CODE.EXIT);
+                        if(Command.CODE.EXIT.equals(code)) {
                             nearestCallList = nearestPassengerList;
                         }
-                    } else if(nearestCallList.size() > 0){
-                        if(this.isFirstFloorNearFromElevator(nearestPassengerList.get(0).getEnd(), nearestCallList.get(0).getEnd(), elevator)) {
-                            if(nearestPassengerList.get(0).getEnd() > elevator.getFloor()) {
-                                code = Command.getProperNextCode(elevator, Command.CODE.UP);
-                            } else if(nearestPassengerList.get(0).getEnd() < elevator.getFloor()) {
-                                code = Command.getProperNextCode(elevator, Command.CODE.DOWN);
-                            } else {
-                                code = Command.getProperNextCode(elevator, Command.CODE.EXIT);
+                    }
+                    /* elevator is not full && unchecked call is not empty */
+                    else /*if(nearestCallList.size() > 0)*/ {
+                        if(this.isFirstNearFromElevator(nearestPassengerList.get(0).getEnd(), nearestCallList.get(0).getStart(), elevator)) {
+                            code = this.getCodeByElevatorPositionWithTargetFloor(elevator, nearestPassengerList.get(0).getEnd(), Command.CODE.EXIT);
+                            if(Command.CODE.EXIT.equals(code)) {
                                 nearestCallList = nearestPassengerList;
                             }
                         } else {
-                            if(nearestCallList.get(0).getStart() > elevator.getFloor()) {
-                                code = Command.getProperNextCode(elevator, Command.CODE.UP);
-                            } else if(nearestCallList.get(0).getStart() < elevator.getFloor()) {
-                                code = Command.getProperNextCode(elevator, Command.CODE.DOWN);
-                            } else {
-                                code = Command.getProperNextCode(elevator, Command.CODE.ENTER);
+                            code = this.getCodeByElevatorPositionWithTargetFloor(elevator, nearestCallList.get(0).getStart(), Command.CODE.ENTER);
+                            if(Command.CODE.ENTER.equals(code)) {
                                 while(nearestCallList.size() > elevator.capablePassengerCount()) {
                                     nearestCallList.remove(nearestCallList.size()-1);
                                 }
