@@ -8,6 +8,9 @@ addons:
     packages:
       - oracle-java8-installer
 
+install:
+  - true
+
 script: "mvn cobertura:cobertura"
 
 after_success:
