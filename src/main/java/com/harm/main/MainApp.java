@@ -3,7 +3,6 @@ package com.harm.main;
 import com.harm.unit.UnitRunner;
 import com.harm.unit.recruit.kakao.elevatorgame.ElevatorGameStudy001;
 import com.harm.unit.recruit.kakao.elevatorgame.ElevatorStrategyAdvancedSimple;
-import com.harm.unit.recruit.kakao.elevatorgame.ElevatorStrategySimple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

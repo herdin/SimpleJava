@@ -16,6 +16,12 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 위에서 설명한 collective control 알고리즘입니다.
+ * 가장 친숙한 동작 방식입니다.
+ * 1대만 사용했음에도 불구하고 제이지 빌딩에서 972의 timestamp를 기록할 정도로 효율적입니다.
+ * 라이언 타워의 경우 약 2000 timestamp를 기록할 수 있습니다.
+ */
 public class ElevatorGameStudy001 implements Unit {
     private Logger logger = LoggerFactory.getLogger(ElevatorGameStudy001.class);
     private final String userKey;

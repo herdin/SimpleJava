@@ -8,13 +8,9 @@ import java.lang.reflect.Proxy;
 public class UnitRunner {
     private static Logger logger = LoggerFactory.getLogger(UnitRunner.class);
 
-    public static Object start(Object obj) {
-        return UnitRunner.start(obj, null);
-    }
-
     public static Object start(Object obj, Object[] objs) {
         if(obj instanceof DefaultUnitHandler) {
-            return UnitRunner.start(obj);
+            return UnitRunner.start((DefaultUnitHandler)obj);
         } else if(obj instanceof Unit){
             return UnitRunner.start(new DefaultUnitHandler((Unit)obj), objs);
         } else {
@@ -22,10 +18,6 @@ public class UnitRunner {
             return null;
         }
     }
-
-    public static Object start(DefaultUnitHandler duh) {
-        return UnitRunner.start(duh, null);
-    }//END OF FUNCTION
 
     public static Object start(DefaultUnitHandler duh, Object[] objects) {
         Unit proxyUnit = (Unit) Proxy.newProxyInstance(duh.getClass().getClassLoader(), new Class[] {Unit.class}, duh);
@@ -37,4 +29,15 @@ public class UnitRunner {
         }
         return result;
     }//END OF FUNCTION
+
+    public static Object start(DefaultUnitHandler duh) {
+        return UnitRunner.start(duh, null);
+    }//END OF FUNCTION
+
+    public static Object start(Unit unit) {
+        return UnitRunner.start(new DefaultUnitHandler(unit), null);
+    }
+    public static Object start(Unit unit, Object[] objects) {
+        return UnitRunner.start(new DefaultUnitHandler(unit), objects);
+    }
 }
