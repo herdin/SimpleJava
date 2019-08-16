@@ -15,6 +15,6 @@ public class DoNumberTwo {
         sequence = this.toilet.openCover(sequence);
         sequence = this.pants.lower(sequence);
         sequence = this.underwear.lower(sequence);
-        sequence = this.ass.bigShot(sequence);
+        sequence = this.ass.bigShoot(sequence);
     }
 }
