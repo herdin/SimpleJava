@@ -1,4 +1,4 @@
-package com.harm.unit.io;
+package com.harm.unit.io.network;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
