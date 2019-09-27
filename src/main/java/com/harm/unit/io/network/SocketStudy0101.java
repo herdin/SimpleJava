@@ -14,7 +14,7 @@ public class SocketStudy0101 implements Unit {
     public Object execute(Object[] obj) throws Exception {
         ServerSocket serverSocket = null;
         Socket socket = null;
-        int portNumber = 3000;
+        int portNumber = 3000; //
         boolean infinit = true;
 
         serverSocket = new ServerSocket(portNumber);
