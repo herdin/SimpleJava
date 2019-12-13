@@ -1,6 +1,7 @@
 package com.harm.unit;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.text.SimpleDateFormat;
@@ -29,12 +30,12 @@ public class DefaultUnitHandler implements InvocationHandler {
 			return method.invoke(this.unit, args);
 		} catch (Exception e) {
 			this.handleException(e);
-			throw e;
+			return null;
 		} finally {
 			this.afterExcute();
 		}
 	}//END OF FUNCTION
-	
+
 	private void beforeExcute() {
 		this.startTimeLong = System.currentTimeMillis();
 		this.logger.debug("----------------------------------------");
@@ -42,16 +43,22 @@ public class DefaultUnitHandler implements InvocationHandler {
 		this.logger.debug("| {} STARTED", this.unit.getClass().getSimpleName());
 		this.logger.debug("........................................");
 	}//END OF FUNCTION
-	
+
 	private void handleException(Exception e) {
 		this.logger.debug("........................................");
 		this.logger.debug("| EXCEPTION HANDLE");
-		for(StackTraceElement ste : e.getStackTrace()) {
-			this.logger.debug("| {}", ste.toString());
+		if(e instanceof InvocationTargetException) {
+			Throwable t = ((InvocationTargetException)e).getTargetException();
+			this.logger.error("| EXCEPTION MESSAGE {}", t.getMessage());
+			for(StackTraceElement ste : t.getStackTrace()) {
+				this.logger.error("| {}", ste.toString());
+			}
+		} else {
+			this.logger.error("CAN'T HANDLE EXCEPTION.");
 		}
 		this.logger.debug("........................................");
 	}//END OF FUNCTION
-	
+
 	private void afterExcute() {
 		this.logger.debug("........................................");
 		this.logger.debug("| END TIME : {}", sdf.format(new Date()));
@@ -59,5 +66,5 @@ public class DefaultUnitHandler implements InvocationHandler {
 		this.logger.debug("| {} END ", this.unit.getClass().getSimpleName());
 		this.logger.debug("----------------------------------------");
 	}//END OF FUNCTION
-	
+
 }//END OF CLASS

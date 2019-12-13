@@ -25,7 +25,7 @@ public class UnitRunner {
         try {
             result = proxyUnit.execute(objects);
         } catch (Exception e) {
-            UnitRunner.logger.error("NOT SUPPORTED ERROR HANDLE.");
+            UnitRunner.logger.error("UNSUPPORTED EXCEPTION.");
         }
         return result;
     }//END OF FUNCTION
