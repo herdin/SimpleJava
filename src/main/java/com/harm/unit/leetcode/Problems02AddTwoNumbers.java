@@ -13,37 +13,31 @@ Explanation: 342 + 465 = 807.
  */
 public class Problems02AddTwoNumbers implements Unit {
     public static final Logger logger = LoggerFactory.getLogger(Problems02AddTwoNumbers.class);
-    class ListNode {
+    public static class ListNode {
         private final Logger logger = LoggerFactory.getLogger(ListNode.class);
         public int val;
         public ListNode next;
         public ListNode(int x) { val = x; }
+        public void setVal(int x) { val = x; }
 
         @Override
         public String toString() {
             ListNode cur = this;
+            StringBuffer sb = new StringBuffer();
 
             while(cur != null) {
-                Problems02AddTwoNumbers.logger.debug("{}", cur.val);
+                this.logger.debug("{}", cur.val);
+                sb.append(cur.val);
                 cur = cur.next;
             }
-            return "";
+            return sb.toString();
         }
     }
     @Override
     public Object execute(Object[] obj) throws Exception {
 
-        if(true)
-            throw new Exception("HANDLE THIS!!!");
-
-        ListNode l1 = null;
-        ListNode lt = new ListNode(5);
-        l1 = lt;
-
-
-        ListNode l2 = null;
-        lt = new ListNode(5);
-        l2 = lt;
+        ListNode l1 = (Problems02AddTwoNumbers.ListNode)obj[0];
+        ListNode l2 = (Problems02AddTwoNumbers.ListNode)obj[1];
 
         ListNode t1 = l1;
         ListNode t2 = l2;
