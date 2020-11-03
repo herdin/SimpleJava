@@ -35,7 +35,7 @@ public class SimpleJavaxSMTPStudy001 implements Unit {
 		Session session = Session.getDefaultInstance(prop, new Authenticator() {
 		    protected PasswordAuthentication getPasswordAuthentication() {
 		         String username = "herdin86@gmail.com"; // gmail �����;
-		         String password = "passwod  // �н����� �Ϻη� Ʋ�� ��������� ���� �� �ȵǴ°ž�";
+		         String password = "passwod";
 		         return new PasswordAuthentication(username, password);
 		    }
 	    });
@@ -44,7 +44,7 @@ public class SimpleJavaxSMTPStudy001 implements Unit {
 		message.setFrom(new InternetAddress("herdin86@gmail.com"));
 		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("herdin86@gmail.com"));
 		message.setSubject("mail subject");
-		message.setContent("������ ����", "text/plain");
+		message.setContent("test content", "text/plain");
 		message.setSentDate(new Date());
 		Transport.send(message);
 		return null;

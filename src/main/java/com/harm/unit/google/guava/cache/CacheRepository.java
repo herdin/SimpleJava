@@ -12,26 +12,27 @@ public class CacheRepository {
 	
 	public CacheRepository(long repoSize) {
 		repo = new HashMap<>((int)repoSize);
-		this.initDefault(repoSize);
+		initDefault(repoSize);
 	}
 	private void initDefault(long repoSize) {
 		for(int i=0; i<repoSize; i++) {
 			repo.put(keyPrefix + i, new CacheTargetObject("id"+i, "name"+i));
 		}
-		this.logger.debug("REPO LIST START");
+		logger.debug("REPO LIST START");
 		for (String s : repo.keySet()) {
-			this.logger.debug("KEY[{}] ID[{}] NAME[{}]", s, repo.get(s).getId(), repo.get(s).getName());
+			logger.debug("KEY[{}] ID[{}] NAME[{}]", s, repo.get(s).getId(), repo.get(s).getName());
 		}
-		this.logger.debug("REPO LIST END");
+		logger.debug("REPO LIST END");
 	}
 	
 	public CacheTargetObject getAfterSleep(String id, long sleepMilisec) {
 		try {
-			this.logger.debug("LOAD FROM REPOSITORY...[{}]", id);
+			logger.debug("LOAD START FROM REPOSITORY...[{}]", id);
 			Thread.sleep(sleepMilisec);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return this.repo.get(id);
+		logger.debug("LOAD END FROM REPOSITORY...[{}]", id);
+		return repo.get(id);
 	}
 }//END OF CLASS

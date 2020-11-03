@@ -1,7 +1,7 @@
 package com.harm.unit.lettcode;
 
 import com.harm.unit.UnitRunner;
-import com.harm.unit.leetcode.Problems03LongestSubstringWithoutRepeatingCharacters;
+import com.harm.unit.algorithm.leetcode.Problems03LongestSubstringWithoutRepeatingCharacters;
 import org.junit.Test;
 
 public class Problems03LongestSubstringWithoutRepeatingCharactersTest {
