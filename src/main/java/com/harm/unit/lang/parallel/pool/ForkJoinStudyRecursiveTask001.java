@@ -1,6 +1,7 @@
 package com.harm.unit.lang.parallel.pool;
 
 import com.harm.unit.Unit;
+import com.harm.unit.UnitRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +12,10 @@ import java.util.concurrent.RecursiveTask;
 
 public class ForkJoinStudyRecursiveTask001 implements Unit {
     private Logger logger = LoggerFactory.getLogger(ForkJoinStudyRecursiveTask001.class);
+
+    public static void main(String[] args) {
+        UnitRunner.start(new ForkJoinStudyRecursiveTask001());
+    }
     @Override
     public Object execute(Object[] obj) throws Exception {
         int threadNumber = Runtime.getRuntime().availableProcessors();
