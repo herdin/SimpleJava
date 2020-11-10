@@ -39,7 +39,7 @@ public class CacheStudy001 implements Unit {
 		long testLoop = paramMap.get("testLoop");
 
 		final CacheRepository cr = new CacheRepository(repoSize);
-		Preconditions.checkNotNull(null);
+//		Preconditions.checkNotNull(null);
 		LoadingCache<String, CacheTargetObject> lc = CacheBuilder.newBuilder()
 			.maximumSize(cacheSize)
 //			.expireAfterAccess()
@@ -72,7 +72,7 @@ public class CacheStudy001 implements Unit {
 		BigDecimal btotal = BigDecimal.valueOf(total);
 		BigDecimal bfail = BigDecimal.valueOf(fail);
 		BigDecimal successRatio = btotal.subtract(bfail).divide(btotal).multiply(BigDecimal.valueOf(100L));
-
+		logger.debug("result -> {}", successRatio.longValue());
 		return successRatio.longValue();
 		
 	}//END OF FUNCTION
