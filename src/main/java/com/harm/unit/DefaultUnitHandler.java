@@ -5,6 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -12,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 public class DefaultUnitHandler implements InvocationHandler {
 	private Logger logger = LoggerFactory.getLogger(DefaultUnitHandler.class);
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 	private long startTimeLong = -1L;
 	private Unit unit = null;
 	
@@ -39,7 +40,7 @@ public class DefaultUnitHandler implements InvocationHandler {
 	private void beforeExcute() {
 		this.startTimeLong = System.currentTimeMillis();
 		this.logger.debug("----------------------------------------");
-		this.logger.debug("| START TIME : {}", sdf.format(new Date()));
+		this.logger.debug("| START TIME : {}", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 		this.logger.debug("| {} STARTED", this.unit.getClass().getSimpleName());
 		this.logger.debug("|");
 	}//END OF FUNCTION
@@ -61,7 +62,7 @@ public class DefaultUnitHandler implements InvocationHandler {
 
 	private void afterExcute() {
 		this.logger.debug("|");
-		this.logger.debug("| END TIME : {}", sdf.format(new Date()));
+		this.logger.debug("| END TIME : {}", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 		this.logger.debug("| RUN TIME : {} SEC", (System.currentTimeMillis()-this.startTimeLong)/1000L);
 		this.logger.debug("| {} END ", this.unit.getClass().getSimpleName());
 		this.logger.debug("----------------------------------------");
