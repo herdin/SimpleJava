@@ -20,6 +20,7 @@ import com.harm.unit.Unit;
  * ����
  * https://ktko.tistory.com/entry/JAVA-SMTP%EC%99%80-Mail-%EB%B0%9C%EC%86%A1%ED%95%98%EA%B8%B0Google-Naver
  */
+@Deprecated
 public class SimpleJavaxSMTPStudy001 implements Unit {
 	private Logger logger = LoggerFactory.getLogger(SimpleJavaxSMTPStudy001.class);
 

@@ -41,11 +41,11 @@ public class DefaultUnitHandler implements InvocationHandler {
 		this.logger.debug("----------------------------------------");
 		this.logger.debug("| START TIME : {}", sdf.format(new Date()));
 		this.logger.debug("| {} STARTED", this.unit.getClass().getSimpleName());
-		this.logger.debug("........................................");
+		this.logger.debug("|");
 	}//END OF FUNCTION
 
 	private void handleException(Exception e) {
-		this.logger.debug("........................................");
+		this.logger.debug("|");
 		this.logger.debug("| EXCEPTION HANDLE");
 		if(e instanceof InvocationTargetException) {
 			Throwable t = ((InvocationTargetException)e).getTargetException();
@@ -56,11 +56,11 @@ public class DefaultUnitHandler implements InvocationHandler {
 		} else {
 			this.logger.error("CAN'T HANDLE EXCEPTION.");
 		}
-		this.logger.debug("........................................");
+		this.logger.debug("|");
 	}//END OF FUNCTION
 
 	private void afterExcute() {
-		this.logger.debug("........................................");
+		this.logger.debug("|");
 		this.logger.debug("| END TIME : {}", sdf.format(new Date()));
 		this.logger.debug("| RUN TIME : {} SEC", (System.currentTimeMillis()-this.startTimeLong)/1000L);
 		this.logger.debug("| {} END ", this.unit.getClass().getSimpleName());

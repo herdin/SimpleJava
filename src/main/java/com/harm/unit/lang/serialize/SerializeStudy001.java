@@ -8,6 +8,7 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.Base64;
 
+@Deprecated
 public class SerializeStudy001 implements Unit {
     private Logger logger = LoggerFactory.getLogger(SerializeStudy001.class);
     @Override
