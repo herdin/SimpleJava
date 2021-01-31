@@ -1,23 +1,20 @@
-package com.harm.unit.algorithm.leetcode;
+package com.harm.unit.algorithm.leetcode.medium;
 
-import com.harm.unit.Unit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 
-/*
-Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
-Output: 7 -> 0 -> 8
-Explanation: 342 + 465 = 807.
+/**
  */
-public class Problems03LongestSubstringWithoutRepeatingCharacters implements Unit {
+public class Problems03LongestSubstringWithoutRepeatingCharacters {
     public final Logger logger = LoggerFactory.getLogger(Problems03LongestSubstringWithoutRepeatingCharacters.class);
 
-    @Override
+    public static void main(String[] args) throws Exception {
+        new Problems03LongestSubstringWithoutRepeatingCharacters().execute(new String[]{"abcabcbb", "bbbbb", "pwwkew", "", " ", "dvdf", "tmmzuxt"});
+    }
+
     public Object execute(Object[] objs) throws Exception {
-
-
         String s = (String)objs[0];
 
         HashSet<Character> hs = new HashSet<>();

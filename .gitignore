@@ -7,4 +7,5 @@ bin/
 *.iml
 .classpath
 .project
+**/secret/**
 build.xml

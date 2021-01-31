@@ -6,18 +6,40 @@ import com.harm.unit.lang.parallel.SemaphoreStudy001;
 import com.harm.unit.lang.parallel.executorservice.ExecutorServiceStudy001;
 import com.harm.unit.lang.serialize.SerializeStudy001;
 import com.harm.unit.lang.stream.StreamStudy002;
+import com.harm.unit.pattern.validate.custom002.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class MainApp {
 	public static Logger logger = LoggerFactory.getLogger(MainApp.class);
 	public static void main(String[] args) throws Exception {
+
+		logger.debug("0={}, 9={}, a={}, z={}, A={}, Z={}", (int)'0', (int)'9', (int)'a', (int)'z', (int)'A', (int)'Z');
+		logger.debug("A={}, Z={}, A-64={}, Z-64={}, 0={}", (int)'A', (int)'Z', (int)'A'-64, (int)'Z'-64, (int)'0');
+		logger.debug("{}", "123456".substring(0));
+		logger.debug("{}", "123456".substring(0, 2));
+		logger.debug("{}", "123456".substring(1, 3));
+		logger.debug("{} {}", (int)10000000000L%10, (int)(10000000000L%10));
+		logger.debug("{}", new BigDecimal(123.456789).setScale(0, RoundingMode.FLOOR));
+		logger.debug("{}", new BigDecimal(123.456789).setScale(1, RoundingMode.FLOOR));
+		logger.debug("{}", new BigDecimal(123.456789).setScale(3, RoundingMode.FLOOR));
+		logger.debug("{} {}", new BigDecimal(123.456789).setScale(4, RoundingMode.FLOOR), new BigDecimal(123.456789).setScale(4, RoundingMode.FLOOR).toString());
+		String target = "123456";
+		logger.debug("{} -> {} ", target, target.substring(0, target.length()));
+		IntStream.range(10, 3).forEach(i -> logger.debug("{}", i));
+
+
 //		UnitRunner.start(new DefaultUniExecutorServiceStudy001tHandler(new ProxyStudy001()));
 //		UnitRunner.start(new DefaultUnitHandler(new NettyServerStudy()));
 //		UnitRunner.start(new DefaultUnitHandler(new SAXBuilerStudy001()));
@@ -34,7 +56,6 @@ public class MainApp {
 //		UnitRunner.start(new SocketStudy0102());
 //		UnitRunner.start(new Problems01TwoSum());
 //		UnitRunner.start(new Problems02AddTwoNumbers());
-//		UnitRunner.start(new Problems03LongestSubstringWithoutRepeatingCharacters(), new String[]{"abcabcbb", "bbbbb", "pwwkew", "", " ", "dvdf", "tmmzuxt"});
 //		UnitRunner.start(new ForkJoinStudyRecursiveTask001());
 //		UnitRunner.start(new ReferenceStudy001());
 //		UnitRunner.start(new LocalDateTimeStudy001());

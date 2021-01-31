@@ -1,8 +1,11 @@
-package com.harm.unit.algorithm.leetcode;
+package com.harm.unit.algorithm.leetcode.easy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 끝
+ * */
 public class Problems09PalindromeNumber {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Problems09PalindromeNumber.class);

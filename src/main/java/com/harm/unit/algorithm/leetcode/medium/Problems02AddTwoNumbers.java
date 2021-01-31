@@ -1,13 +1,15 @@
-package com.harm.unit.algorithm.leetcode;
+package com.harm.unit.algorithm.leetcode.medium;
 
 import com.harm.unit.Unit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/*
-Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
-Output: 7 -> 0 -> 8
-Explanation: 342 + 465 = 807.
+/**
+ * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+ * Output: 7 -> 0 -> 8
+ * Explanation: 342 + 465 = 807.
+ * 끝
+ * 노드를 1의자리부터 따라가며 덧셈하고 자릿수 이전하는 방식
  */
 public class Problems02AddTwoNumbers implements Unit {
     public static final Logger logger = LoggerFactory.getLogger(Problems02AddTwoNumbers.class);

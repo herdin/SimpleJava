@@ -1,7 +1,7 @@
 package com.harm.unit.lettcode;
 
 import com.harm.unit.UnitRunner;
-import com.harm.unit.algorithm.leetcode.Problems01TwoSum;
+import com.harm.unit.algorithm.leetcode.easy.Problems01TwoSum;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
