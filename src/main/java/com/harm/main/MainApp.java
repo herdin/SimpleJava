@@ -17,6 +17,7 @@ import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -37,7 +38,10 @@ public class MainApp {
 		logger.debug("{} {}", new BigDecimal(123.456789).setScale(4, RoundingMode.FLOOR), new BigDecimal(123.456789).setScale(4, RoundingMode.FLOOR).toString());
 		String target = "123456";
 		logger.debug("{} -> {} ", target, target.substring(0, target.length()));
-		IntStream.range(10, 3).forEach(i -> logger.debug("{}", i));
+		AtomicInteger ai = new AtomicInteger(0);
+		IntStream.range(0, 10_000).parallel().forEach(notUsed -> logger.debug("{}", ai.getAndIncrement()));
+		logger.debug("done -> {}", ai.get());
+
 
 
 //		UnitRunner.start(new DefaultUniExecutorServiceStudy001tHandler(new ProxyStudy001()));
