@@ -13,4 +13,4 @@ jdk:
 #  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
-  slack: unmani:4pBJoLwj5YBUNfFoSOjbVNcI
+  slack: anmani:3ubVnvB71zrG3WQIFnLzoyCX
