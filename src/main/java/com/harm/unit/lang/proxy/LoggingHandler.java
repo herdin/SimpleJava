@@ -13,11 +13,11 @@ public class LoggingHandler implements InvocationHandler {
 	
 	public LoggingHandler(ProxyTargetInf pt) {
 		this.pt = pt;
-	}//END OF FUNCTIOIN
+	}
 	
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		this.logger.debug("LOGGING HANDLER START");
+		this.logger.debug("LOGGING HANDLER START -> {}");
 		try {
 			this.logger.debug("LOGGING HANDLER ENTER TRY");
 			return method.invoke(this.pt, args);
@@ -26,6 +26,6 @@ public class LoggingHandler implements InvocationHandler {
 		} finally {
 			this.logger.debug("LOGGING HANDLER ENTER END");
 		}
-	}//END OF FUNCTIOIN
+	}
 	
-}//END OF CLASS
+}

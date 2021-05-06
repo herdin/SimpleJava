@@ -9,12 +9,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import com.google.common.base.Stopwatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DefaultUnitHandler implements InvocationHandler {
 	private Logger logger = LoggerFactory.getLogger(DefaultUnitHandler.class);
-	private long startTimeLong = -1L;
+	private Stopwatch stopwatch;
 	private Unit unit = null;
 	
 	public DefaultUnitHandler(Unit unit) {
@@ -38,10 +39,10 @@ public class DefaultUnitHandler implements InvocationHandler {
 	}//END OF FUNCTION
 
 	private void beforeExcute() {
-		this.startTimeLong = System.currentTimeMillis();
+		stopwatch = Stopwatch.createStarted();
 		this.logger.debug("----------------------------------------");
 		this.logger.debug("| START TIME : {}", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-		this.logger.debug("| {} STARTED", this.unit.getClass().getSimpleName());
+		this.logger.debug("| {} STARTED", stopwatch.toString());
 		this.logger.debug("|");
 	}//END OF FUNCTION
 
@@ -63,7 +64,7 @@ public class DefaultUnitHandler implements InvocationHandler {
 	private void afterExcute() {
 		this.logger.debug("|");
 		this.logger.debug("| END TIME : {}", LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-		this.logger.debug("| RUN TIME : {} SEC", (System.currentTimeMillis()-this.startTimeLong)/1000L);
+		this.logger.debug("| RUN TIME : {}", stopwatch.stop().toString());
 		this.logger.debug("| {} END ", this.unit.getClass().getSimpleName());
 		this.logger.debug("----------------------------------------");
 	}//END OF FUNCTION

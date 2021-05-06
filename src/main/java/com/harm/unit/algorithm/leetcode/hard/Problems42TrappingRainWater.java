@@ -54,15 +54,15 @@ public class Problems42TrappingRainWater {
             int lastIndex = height.length-1;
             rightMax[lastIndex] = height[lastIndex];
             for(int i=0; i<height.length; i++) {
-                if(i > 0) leftMax[i] = (height[i] > leftMax[i-1])? height[i]:leftMax[i-1];
+                if(i > 0) leftMax[i] = Math.max(height[i], leftMax[i - 1]);
                 int ri = lastIndex-i;
-                if(ri < lastIndex) rightMax[ri] = (height[ri] > rightMax[ri+1])? height[ri]:rightMax[ri+1];
+                if(ri < lastIndex) rightMax[ri] = Math.max(height[ri], rightMax[ri + 1]);
             }
 //            logger.debug("left max {}", Arrays.toString(leftMax));
 //            logger.debug("right max {}", Arrays.toString(rightMax));
 
             for(int i=0; i<height.length; i++) {
-                int minHeight = (leftMax[i] < rightMax[i])? leftMax[i]:rightMax[i];
+                int minHeight = Math.min(leftMax[i], rightMax[i]);
                 int trappedWaterCandidate = minHeight - height[i];
                 if(trappedWaterCandidate > 0) trappedWater += trappedWaterCandidate;
             }

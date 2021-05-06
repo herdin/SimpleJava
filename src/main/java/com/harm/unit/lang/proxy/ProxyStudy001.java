@@ -16,5 +16,8 @@ public class ProxyStudy001 implements Unit {
 		this.logger.debug(pt.targetAction2());
 		return null;
 	}
-	
+
+	public static void main(String[] args) throws Exception {
+		new ProxyStudy001().execute(null);
+	}
 }//END OF CLASS

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * 끝
  * */
-public class Problems146LRUCache {
+public class    Problems146LRUCache {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Problems146LRUCache.class);
 //        String[] commands = {"LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"};

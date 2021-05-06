@@ -1,5 +1,6 @@
 package com.harm.unit.algorithm.leetcode.hard;
 
+import com.google.common.base.Stopwatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,12 +36,41 @@ public class Problems829ConsecutiveNumbersSum {
         dataList.add(new Data(5, 2));
         dataList.add(new Data(9, 3));
         dataList.add(new Data(15, 4));
+        dataList.add(new Data(333764327, -1));
+        Stopwatch stopwatch = Stopwatch.createUnstarted();
         for(Data data : dataList) {
-            logger.debug("data {}, solution {}", data.toString(), new Problems829ConsecutiveNumbersSum.Solution().consecutiveNumbersSum(data.N));
+//            stopwatch.start();
+//            logger.debug("data {}, solution old {}, time taken {}", data.toString(), new Problems829ConsecutiveNumbersSum.SolutionOld2().consecutiveNumbersSum(data.N), stopwatch.stop().toString());
+            stopwatch.start();
+            logger.debug("data {}, solution {}, time taken {}", data.toString(), new Problems829ConsecutiveNumbersSum.Solution().consecutiveNumbersSum(data.N), stopwatch.stop().toString());
         }
 
     }
+
     static class Solution {
+        public int consecutiveNumbersSum(int N) {
+            int answer = 0;
+            int tempSum = 1;
+            int start = 1;
+            int end = 1;
+            while(end <= Math.sqrt(2*N)) {
+                if(tempSum == N) {
+                    answer++;
+                    end++;
+                    tempSum += end;
+                } else if(tempSum < N) {
+                    end++;
+                    tempSum += end;
+                } else { //N < tempSum
+                    tempSum -= start;
+                    start++;
+                }
+            }
+            return answer+1;
+        }
+    }
+
+    static class SolutionOld2 {
         public int consecutiveNumbersSum(int N) {
             int answer = 1;
             for(int i=1; i<=N/2+1; i++) {
@@ -58,7 +88,7 @@ public class Problems829ConsecutiveNumbersSum {
         }
     }
 
-    static class SolutionOld {
+    static class SolutionOld1 {
         public int consecutiveNumbersSum(int N) {
             int answer = 1;
             for(int i=1; i<N; i++) {

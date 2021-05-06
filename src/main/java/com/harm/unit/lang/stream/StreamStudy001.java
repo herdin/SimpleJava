@@ -17,7 +17,11 @@ public class StreamStudy001 implements Unit {
     public Object execute(Object[] obj) throws Exception {
         //List 생성
         List<Integer> list = Arrays.asList(3, 2, 5, 6, 1, 4);
-        logger.debug("init list : {}", list);
+        logger.debug("Arrays.asList -> {}", list);
+
+        //List static factory method 로 List 생성
+        List<Integer> list2 = List.of(3, 2, 4, 1, 5);
+        logger.debug("List.of -> {}", list2);
 
         //Stream Builder 로 생성
         Stream<String> strStream = Stream.<String>builder()

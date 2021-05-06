@@ -15,6 +15,7 @@ public class Problems01TwoSum {
 //        int target = 9;
         int[] nums = {3, 2, 4};
         int target = 6;
+        logger.debug("nums {}, target {}, solution {}", Arrays.toString(nums), target, Arrays.toString(new SolutionOld().twoSum(nums, target)));
         logger.debug("nums {}, target {}, solution {}", Arrays.toString(nums), target, Arrays.toString(new Solution().twoSum(nums, target)));
     }
     static class Solution {
