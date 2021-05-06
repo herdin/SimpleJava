@@ -1,14 +1,10 @@
 package com.harm.unit.algorithm.tct.hamhuman;
 
-import io.netty.util.internal.logging.Slf4JLoggerFactory;
-import junit.extensions.TestSetup;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.IntStream;
 
 public class TctStudy01 {
     private static Logger logger = LoggerFactory.getLogger(TctStudy01.class);

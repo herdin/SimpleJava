@@ -13,6 +13,11 @@ public class ListStudy implements Unit {
     Logger logger = LoggerFactory.getLogger(ListStudy.class);
     @Override
     public void execute() throws Exception {
+        listFactory();
+    }
 
+    public void listFactory() {
+        List<String> friends = List.of("joel", "paul", "tom");
+        logger.debug("friends, {}", friends);
     }
 }
