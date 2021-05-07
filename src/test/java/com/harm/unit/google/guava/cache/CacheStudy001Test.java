@@ -2,14 +2,12 @@ package com.harm.unit.google.guava.cache;
 
 import com.harm.unit.DefaultUnitHandler;
 import com.harm.unit.UnitRunner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.hamcrest.core.Is.is;
 
 public class CacheStudy001Test {
     private Logger logger = LoggerFactory.getLogger(CacheStudy001Test.class);
@@ -32,7 +30,7 @@ public class CacheStudy001Test {
         Long result = (Long) UnitRunner.start(new DefaultUnitHandler(new CacheStudy001()), new Object[]{paramMap});
 
         this.logger.debug("RESULT : {}", result);
-        org.junit.Assert.assertTrue(result != null);
+        org.junit.jupiter.api.Assertions.assertTrue(result != null);
     }
 
 }

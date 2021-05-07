@@ -12,7 +12,7 @@ const WORK_TYPE = {
     },
 };
 const sampleInput = {
-    targetMonth : new Date().getMonth()+2,
+    targetMonth : new Date().getMonth()+2, //+1: 현재달, +2: 다음달
     duration: ['2021-05-01', '2021-05-30'],
     holiday: [
         '2021-05-01',

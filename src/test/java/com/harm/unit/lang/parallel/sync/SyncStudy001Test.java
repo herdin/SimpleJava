@@ -1,19 +1,15 @@
 package com.harm.unit.lang.parallel.sync;
 
 import com.harm.unit.UnitRunner;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
 
 public class SyncStudy001Test {
 //    private Logger logger = LoggerFactory.getLogger(SyncStudy001Test.class);
     private ArrayList<Object> param = new ArrayList<>();
-    @Before
+    @BeforeEach
     public void beforeEachTest() {
         SyncTarget.resetData();
         param.clear();
@@ -31,7 +27,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), true);
 
         //sync with this && prototype instance make unsyncronized result
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), not(1000L));
+        org.junit.jupiter.api.Assertions.assertNotEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
     @Test
@@ -43,7 +39,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), false);
 
         //sync with this && singleton instance make syncronized result
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), not(1000L));
+        org.junit.jupiter.api.Assertions.assertNotEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
     @Test
@@ -54,7 +50,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.IS_PROTOTYPE.ordinal(), false);
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), true);
 
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), is(1000L));
+        org.junit.jupiter.api.Assertions.assertEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
     @Test
@@ -65,7 +61,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.IS_PROTOTYPE.ordinal(), false);
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), false);
 
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), is(1000L));
+        org.junit.jupiter.api.Assertions.assertEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
     @Test
@@ -76,7 +72,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.IS_PROTOTYPE.ordinal(), true);
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), true);
 
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), is(1000L));
+        org.junit.jupiter.api.Assertions.assertEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
     @Test
@@ -87,7 +83,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.IS_PROTOTYPE.ordinal(), true);
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), false);
 
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), is(1000L));
+        org.junit.jupiter.api.Assertions.assertEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
     @Test
@@ -98,7 +94,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.IS_PROTOTYPE.ordinal(), false);
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), true);
 
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), is(1000L));
+        org.junit.jupiter.api.Assertions.assertEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
     @Test
@@ -109,7 +105,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.IS_PROTOTYPE.ordinal(), false);
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), false);
 
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), is(1000L));
+        org.junit.jupiter.api.Assertions.assertEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
     @Test
@@ -120,7 +116,7 @@ public class SyncStudy001Test {
         param.set(SyncTarget.PARAMS.IS_PROTOTYPE.ordinal(), Boolean.TRUE);
         param.set(SyncTarget.PARAMS.CALL_NORMAL_METHOD.ordinal(), Boolean.TRUE);
 
-        Assert.assertThat(UnitRunner.start(new SyncStudy001(), param.toArray()), not(1000L));
+        org.junit.jupiter.api.Assertions.assertNotEquals(UnitRunner.start(new SyncStudy001(), param.toArray()), 1000L);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.harm.unit.lang.reflect.annotaion.repeatable;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,7 @@ public class RepeatableTest {
             logger.debug("{}", annotation);
         }
 
-        Assert.assertTrue(annotations.length == 3);
+        org.junit.jupiter.api.Assertions.assertTrue(annotations.length == 3);
 
     }
 
@@ -39,7 +38,7 @@ public class RepeatableTest {
             logger.debug("{}", annotation);
         }
 
-        Assert.assertTrue(annotations.length == 1); //RepeatableGroup 1
+        org.junit.jupiter.api.Assertions.assertTrue(annotations.length == 1); //RepeatableGroup 1
 
 
         RepeatableGroup repeatableGroup = RepeatableTestTarget02.class.getAnnotation(RepeatableGroup.class);
@@ -48,7 +47,7 @@ public class RepeatableTest {
             logger.debug("{}", repeatableItem);
         }
 
-        Assert.assertTrue(repeatableGroup.value().length == 2); //repeatableGroup values 2
+        org.junit.jupiter.api.Assertions.assertTrue(repeatableGroup.value().length == 2); //repeatableGroup values 2
 
     }
 
@@ -60,7 +59,7 @@ public class RepeatableTest {
         RepeatableGroup repeatableGroup = RepeatableTestTarget03.class.getAnnotation(RepeatableGroup.class);
 
         logger.debug("{}", repeatableGroup);
-        Assert.assertTrue(repeatableGroup == null);
+        org.junit.jupiter.api.Assertions.assertTrue(repeatableGroup == null);
 
         RepeatableItem[] repeatableItems = RepeatableTestTarget03.class.getAnnotationsByType(RepeatableItem.class);
 
@@ -69,7 +68,7 @@ public class RepeatableTest {
             logger.debug("{}", repeatableItem);
         }
 
-        Assert.assertTrue(repeatableItems.length == 1);
+        org.junit.jupiter.api.Assertions.assertTrue(repeatableItems.length == 1);
     }
 
 }

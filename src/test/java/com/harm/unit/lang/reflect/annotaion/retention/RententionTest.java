@@ -1,7 +1,6 @@
 package com.harm.unit.lang.reflect.annotaion.retention;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +20,7 @@ public class RententionTest {
             logger.debug("{}", annotations);
         }
 
-        Assert.assertTrue(annotations.length == 0);
+        org.junit.jupiter.api.Assertions.assertTrue(annotations.length == 0);
     }
 
     @Test
@@ -35,7 +34,7 @@ public class RententionTest {
             logger.debug("{}", annotations);
         }
 
-        Assert.assertTrue(annotations.length == 0);
+        org.junit.jupiter.api.Assertions.assertTrue(annotations.length == 0);
     }
     @Test
     public void retentionRuntimeTest() {
@@ -47,6 +46,6 @@ public class RententionTest {
             logger.debug("{}", annotations);
         }
 
-        Assert.assertTrue(annotations.length == 1);
+        org.junit.jupiter.api.Assertions.assertTrue(annotations.length == 1);
     }
 }

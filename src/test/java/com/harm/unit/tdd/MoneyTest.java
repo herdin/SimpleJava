@@ -1,8 +1,10 @@
 package com.harm.unit.tdd;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MoneyTest {
 
@@ -21,14 +23,14 @@ public class MoneyTest {
     @Test
     public void equals() {
         달러_곱셈_테스트   ();
-        assertTrue(Money.dollar(5).equals(Money.dollar(5)));
-        assertTrue(Money.dollar(6).equals(Money.dollar(6)));
-        assertFalse(Money.dollar(5).equals(Money.dollar(6)));
-        assertTrue(Money.franc(5).equals(Money.franc(5)));
-        assertTrue(Money.franc(6).equals(Money.franc(6)));
-        assertFalse(Money.franc(5).equals(Money.franc(6)));
+        assertEquals(Money.dollar(5), Money.dollar(5));
+        assertEquals(Money.dollar(6), Money.dollar(6));
+        Assertions.assertNotEquals(Money.dollar(5), Money.dollar(6));
+        assertEquals(Money.franc(5), Money.franc(5));
+        assertEquals(Money.franc(6), Money.franc(6));
+        Assertions.assertNotEquals(Money.franc(5), Money.franc(6));
 
-        assertFalse(Money.dollar(5).equals(Money.franc(5)));
+        Assertions.assertNotEquals(Money.dollar(5), Money.franc(5));
     }
 
     @Test
