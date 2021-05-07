@@ -171,13 +171,13 @@
 				<configuration>
 					<repoToken>LRQ9YNwfOla5Xq7MvBhKzgSdg1q8QLmOF</repoToken>
 				</configuration>
-<!--				<dependencies>-->
-<!--					<dependency>-->
-<!--						<groupId>javax.xml.bind</groupId>-->
-<!--						<artifactId>jaxb-api</artifactId>-->
-<!--						<version>2.3.1</version>-->
-<!--					</dependency>-->
-<!--				</dependencies>-->
+				<dependencies>
+					<dependency>
+						<groupId>javax.xml.bind</groupId>
+						<artifactId>jaxb-api</artifactId>
+						<version>2.3.1</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
