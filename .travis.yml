@@ -14,3 +14,6 @@ jdk:
 
 notifications:
   slack: anmani:3ubVnvB71zrG3WQIFnLzoyCX
+
+after_success:
+  - mvn clean test jacoco:report coveralls:report

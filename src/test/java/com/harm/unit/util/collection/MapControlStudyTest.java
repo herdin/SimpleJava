@@ -58,4 +58,10 @@ public class MapControlStudyTest {
         assertEquals(14, map.get(notExistsKey));
         logger.debug("check map {}", map);
     }
+
+    @Test
+    @DisplayName("")
+    public void map_compute_if_present() {
+
+    }
 }
